@@ -37,6 +37,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/home', 'Home::index');
+$routes->get('/syarat', 'Syarat::index');
+
 $routes->get('/login', 'Login::index');
 $routes->post('/login/proses', 'Login::proses');
 $routes->get('/login/logout', 'Login::logout');
@@ -82,6 +84,11 @@ $routes->post('/slider/ganti/(:any)', 'Slider::ganti/$1');
 $routes->post('/slider/ajax_edit', 'Slider::ajax_edit');
 $routes->post('/slider/hapus/(:any)', 'Slider::hapus/$1');
 
+$routes->get('/syaratumum', 'Syaratumum::index');
+$routes->post('/syaratumum/proses', 'Syaratumum::proses');
+
+$routes->get('/syaratkhusus', 'Syaratkhusus::index');
+$routes->post('/syaratkhusus/proses', 'Syaratkhusus::proses');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

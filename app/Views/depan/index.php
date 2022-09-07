@@ -85,7 +85,9 @@ $modul = new Modul();
                         <button class="navbar-btn nav-button wow bounceInRight login" onclick="login();" data-wow-delay="0.4s">Login</button>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo base_url(); ?>/home">Home</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a class="active" href="<?php echo base_url(); ?>/home">Home</a>
+                        </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo base_url(); ?>/produk">Produk</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo base_url(); ?>/syarat">Syarat</a></li>
                     </ul>

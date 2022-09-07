@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 04, 2022 at 04:23 PM
+-- Generation Time: Sep 07, 2022 at 07:45 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -215,6 +215,46 @@ CREATE TABLE IF NOT EXISTS `sliderjudul` (
 
 INSERT INTO `sliderjudul` (`idsliderjudul`, `judul`, `subjudul`) VALUES
 ('S00001', 'PROPERTY SEARCHING JUST GOT SO EASY', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `syarat_khusus`
+--
+
+DROP TABLE IF EXISTS `syarat_khusus`;
+CREATE TABLE IF NOT EXISTS `syarat_khusus` (
+  `idsyarat_khusus` varchar(6) NOT NULL,
+  `keterangan` text NOT NULL,
+  PRIMARY KEY (`idsyarat_khusus`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `syarat_khusus`
+--
+
+INSERT INTO `syarat_khusus` (`idsyarat_khusus`, `keterangan`) VALUES
+('K00001', '<ol style=\"list-style-type: lower-alpha;\">\r\n<li>Masa kerja dinas paling singkat 1 (Satu) tahun atau gaji sudah dipotong iuran Tabpin</li>\r\n<li>Surat pernyataan kesanggupan pemotongan gaji dengan materai cukup melalui Ka Akun atau bendahara pengeluaran</li>\r\n<li>Surat pengantar dari Kotama atau satker kepada Kadiswatpersal</li>\r\n</ol>');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `syarat_umum`
+--
+
+DROP TABLE IF EXISTS `syarat_umum`;
+CREATE TABLE IF NOT EXISTS `syarat_umum` (
+  `idsyarat_umum` varchar(6) NOT NULL,
+  `keterangan` text NOT NULL,
+  PRIMARY KEY (`idsyarat_umum`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `syarat_umum`
+--
+
+INSERT INTO `syarat_umum` (`idsyarat_umum`, `keterangan`) VALUES
+('S00001', '<ol style=\"list-style-type: lower-alpha;\">\r\n<li>Masa kerja dinas paling singkat 1 (Satu) tahun atau gaji sudah dipotong iuran Tabpin</li>\r\n<li>Surat pernyataan kesanggupan pemotongan gaji dengan materai cukup melalui Ka Akun atau bendahara pengeluaran</li>\r\n<li>Surat pengantar dari Kotama atau satker kepada Kediswatpersal</li>\r\n</ol>');
 
 -- --------------------------------------------------------
 

@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/libs/bootstrap-sweetalert/bootstrap-sweetalert.css">
         
         <script src="<?php echo base_url(); ?>/back/assets/js/jquery.min.js"></script>
+        <script src="<?php echo base_url(); ?>/tinymce/tinymce.min.js"></script>
         
         <script type="text/javascript">
             
@@ -89,7 +90,7 @@
                     </div>
                     <div class="sidenav-divider mt-0"></div>
                     <ul class="sidenav-inner py-1">
-                        <li class="sidenav-item <?php if($menu == "slider" || $menu == "beranda" || $menu == "identitas" || $menu == "profile" || $menu == "gantipass") { echo 'active open'; } ?>">
+                        <li class="sidenav-item <?php if($menu == "slider" || $menu == "beranda" || $menu == "identitas" || $menu == "profile" || $menu == "gantipass" || $menu == "syaratumum" || $menu == "syaratkhusus") { echo 'active open'; } ?>">
                             <a href="javascript:" class="sidenav-link sidenav-toggle">
                                 <i class="sidenav-icon feather icon-home"></i>
                                 <div>Dashboards</div>
@@ -118,6 +119,16 @@
                                 <li class="sidenav-item <?php if($menu == "slider") { echo 'active'; } ?>">
                                     <a href="<?php echo base_url(); ?>/slider" class="sidenav-link">
                                         <div>Slider</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item <?php if($menu == "syaratumum") { echo 'active'; } ?>">
+                                    <a href="<?php echo base_url(); ?>/syaratumum" class="sidenav-link">
+                                        <div>Syarat Umum</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item <?php if($menu == "syaratkhusus") { echo 'active'; } ?>">
+                                    <a href="<?php echo base_url(); ?>/syaratkhusus" class="sidenav-link">
+                                        <div>Syarat Khusus</div>
                                     </a>
                                 </li>
                             </ul>
