@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Models\Mcustom;
 use App\Libraries\Modul;
 
-class Syarat extends BaseController{
+class Produk extends BaseController {
     
     private $model;
     private $modul;
@@ -60,7 +60,7 @@ class Syarat extends BaseController{
         
         echo view('depan/header', $data);
         echo view('depan/menu');
-        echo view('depan/syarat');
+        echo view('depan/produk');
         echo view('depan/footer');
     }
 }

@@ -38,6 +38,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('/home', 'Home::index');
 $routes->get('/syarat', 'Syarat::index');
+$routes->get('/produk', 'Produk::index');
 
 $routes->get('/login', 'Login::index');
 $routes->post('/login/proses', 'Login::proses');

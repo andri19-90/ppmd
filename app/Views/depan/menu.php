@@ -16,7 +16,7 @@
             <ul class="main-nav nav navbar-nav navbar-right">
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a <?php if($menu == "home"){ echo 'class="active"'; } ?> href="<?php echo base_url(); ?>/home">Home</a></li>
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a <?php if($menu == "produk"){ echo 'class="active"'; } ?> href="<?php echo base_url(); ?>/produk">Produk PPMD</a></li>
-                <li class="wow fadeInDown" data-wow-delay="0.1s"><a <?php if($menu == "syarat"){ echo 'class="active"'; } ?> href="<?php echo base_url(); ?>/syarat">Syarat PPMD</a></li>                        
+                <li class="wow fadeInDown" data-wow-delay="0.1s"><a <?php if($menu == "syarat"){ echo 'class="active"'; } ?> href="<?php echo base_url(); ?>/syarat">Syarat PPMD</a></li>
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a <?php if($menu == "hub"){ echo 'class="active"'; } ?> href="<?php echo base_url(); ?>/hub">Hubungi Kami</a></li>
             </ul>
         </div>
