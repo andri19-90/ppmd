@@ -8,29 +8,20 @@
         <meta name="description" content="Empire is one of the unique admin template built on top of Bootstrap 4 framework. It is easy to customize, flexible code styles, well tested, modern & responsive are the topmost key factors of Empire Dashboard Template" />
         <meta name="keywords" content="PPMD, Perumahan Dinas TNI AL">
         <meta name="author" content="https://pramediaenginering.com/" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-        <!-- Google fonts -->
+        <link rel="icon" type="image/x-icon" href="<?php echo $logo; ?>">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-
-        <!-- Icon fonts -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/fonts/fontawesome.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/fonts/ionicons.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/fonts/linearicons.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/fonts/open-iconic.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/fonts/pe-icon-7-stroke.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/fonts/feather.css">
-
-        <!-- Core stylesheets -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/css/bootstrap-material.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/css/shreerang-material.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/css/uikit.css">
-
-        <!-- Libs -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/libs/perfect-scrollbar/perfect-scrollbar.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/libs/datatables/datatables.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/libs/bootstrap-sweetalert/bootstrap-sweetalert.css">
-        
         <script src="<?php echo base_url(); ?>/back/assets/js/jquery.min.js"></script>
         <script src="<?php echo base_url(); ?>/tinymce/tinymce.min.js"></script>
         
@@ -90,7 +81,7 @@
                     </div>
                     <div class="sidenav-divider mt-0"></div>
                     <ul class="sidenav-inner py-1">
-                        <li class="sidenav-item <?php if($menu == "slider" || $menu == "beranda" || $menu == "identitas" || $menu == "profile" || $menu == "gantipass" || $menu == "syaratumum" || $menu == "syaratkhusus") { echo 'active open'; } ?>">
+                        <li class="sidenav-item <?php if($menu == "slider" || $menu == "beranda" || $menu == "identitas" || $menu == "profile" || $menu == "gantipass" || $menu == "syaratumum" || $menu == "syaratkhusus" || $menu == "peta" || $menu == "kotakmasuk") { echo 'active open'; } ?>">
                             <a href="javascript:" class="sidenav-link sidenav-toggle">
                                 <i class="sidenav-icon feather icon-home"></i>
                                 <div>Dashboards</div>
@@ -129,6 +120,16 @@
                                 <li class="sidenav-item <?php if($menu == "syaratkhusus") { echo 'active'; } ?>">
                                     <a href="<?php echo base_url(); ?>/syaratkhusus" class="sidenav-link">
                                         <div>Syarat Khusus</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item <?php if($menu == "peta") { echo 'active'; } ?>">
+                                    <a href="<?php echo base_url(); ?>/peta" class="sidenav-link">
+                                        <div>Embeded Peta</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item <?php if($menu == "kotakmasuk") { echo 'active'; } ?>">
+                                    <a href="<?php echo base_url(); ?>/kotakmasuk" class="sidenav-link">
+                                        <div>Kotak Masuk</div>
                                     </a>
                                 </li>
                             </ul>

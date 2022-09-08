@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 07, 2022 at 07:45 AM
+-- Generation Time: Sep 08, 2022 at 03:45 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `identitas` (
 --
 
 INSERT INTO `identitas` (`kode`, `instansi`, `slogan`, `tahun`, `pimpinan`, `alamat`, `kdpos`, `tlp`, `fax`, `website`, `email`, `logo`) VALUES
-('K00001', 'KOARMADA 2', 'Ghora Wira Madya Jala', 1985, 'Laksamana Muda TNI Dr. T.S.N.B. Hutabarat, M.M.S.', 'Dermaga Ujung Surabaya, Jawa Timur', '60178', '085731803889', '-', 'https://koarmada2.tnial.mil.id/', 'rampa@gmail.com', '1662301680_11fb6152ab058d044850.png');
+('K00001', 'KOARMADA 2', 'Ghora Wira Madya Jala', 1985, 'Laksamana Muda TNI Dr. T.S.N.B. Hutabarat, M.M.S.', 'Gedung B.3 Lantai 6, Mabes TNI AL - Cilangkap Jakarta Timur. 13870', '60178', '+1 908 967 5906', '-', 'https://koarmada2.tnial.mil.id/', 'email@yourcompany.com', '1662301680_11fb6152ab058d044850.png');
 
 -- --------------------------------------------------------
 
@@ -115,6 +115,23 @@ INSERT INTO `korps` (`idkorps`, `nama_korps`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kotakmasuk`
+--
+
+DROP TABLE IF EXISTS `kotakmasuk`;
+CREATE TABLE IF NOT EXISTS `kotakmasuk` (
+  `idkotakmasuk` varchar(6) NOT NULL,
+  `nm_depan` varchar(45) NOT NULL,
+  `nm_belakang` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `judul` varchar(45) NOT NULL,
+  `pesan` text NOT NULL,
+  PRIMARY KEY (`idkotakmasuk`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pangkat`
 --
 
@@ -152,6 +169,19 @@ INSERT INTO `pangkat` (`idpangkat`, `nama_pangkat`) VALUES
 ('P00021', 'Mayor'),
 ('P00022', 'Letnan Kolonel'),
 ('P00023', 'Kolonel');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `peta`
+--
+
+DROP TABLE IF EXISTS `peta`;
+CREATE TABLE IF NOT EXISTS `peta` (
+  `idpeta` varchar(6) NOT NULL,
+  `textpeta` text NOT NULL,
+  PRIMARY KEY (`idpeta`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

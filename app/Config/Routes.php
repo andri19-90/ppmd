@@ -39,6 +39,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/home', 'Home::index');
 $routes->get('/syarat', 'Syarat::index');
 $routes->get('/produk', 'Produk::index');
+$routes->get('/hub', 'Hub::index');
 
 $routes->get('/login', 'Login::index');
 $routes->post('/login/proses', 'Login::proses');
@@ -90,6 +91,10 @@ $routes->post('/syaratumum/proses', 'Syaratumum::proses');
 
 $routes->get('/syaratkhusus', 'Syaratkhusus::index');
 $routes->post('/syaratkhusus/proses', 'Syaratkhusus::proses');
+
+$routes->get('/peta', 'Peta::index');
+$routes->get('/peta/proses', 'Peta::proses');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
