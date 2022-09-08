@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <?php
+use App\Models\Mcustom;
 use App\Libraries\Modul;
 
 $modul = new Modul();
+$model = new Mcustom();
 ?>
 <html class="no-js">
     <head>
@@ -36,8 +38,6 @@ $modul = new Modul();
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
-        <!-- Body content -->
-
         <div class="header-connect">
             <div class="container">
                 <div class="row">
@@ -63,12 +63,12 @@ $modul = new Modul();
                     </div>
                 </div>
             </div>
-        </div>           
+        </div>
         <!--End top header -->
 
+        
         <nav class="navbar navbar-default ">
             <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
                         <span class="sr-only">Toggle navigation</span>
@@ -78,21 +78,18 @@ $modul = new Modul();
                     </button>
                     <a class="navbar-brand" href="<?php echo base_url(); ?>/home"><img src="<?php echo $logo; ?>" alt="Logo"></a>
                 </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         <button class="navbar-btn nav-button wow bounceInRight login" onclick="login();" data-wow-delay="0.4s">Login</button>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="active" href="<?php echo base_url(); ?>/home">Home</a>
-                        </li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo base_url(); ?>/produk">Produk</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo base_url(); ?>/syarat">Syarat</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="active" href="<?php echo base_url(); ?>/home">Home</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo base_url(); ?>/produk">Produk PPMD</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo base_url(); ?>/syarat">Syarat PPMD</a></li>                        
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="<?php echo base_url(); ?>/hub">Hubungi Kami</a></li>
                     </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+            </div>
         </nav>
         <!-- End of nav bar -->
 
@@ -101,16 +98,16 @@ $modul = new Modul();
                 <div id="bg-slider" class="owl-carousel owl-theme">
                     <?php
                     foreach ($slider->getResult() as $row) {
-                        $def_slider = base_url().'/images/noimg.jpg';
-                        if(strlen($row->gambar) > 0){
-                            if(file_exists($modul->getPathApp().$row->gambar)){
-                                $def_slider = base_url().'/uploads/'.$row->gambar;
+                        $def_slider = base_url() . '/images/noimg.jpg';
+                        if (strlen($row->gambar) > 0) {
+                            if (file_exists($modul->getPathApp() . $row->gambar)) {
+                                $def_slider = base_url() . '/uploads/' . $row->gambar;
                             }
                         }
                         ?>
-                    <div class="item">
-                        <img src="<?php echo $def_slider; ?>" alt="">
-                    </div>
+                        <div class="item">
+                            <img src="<?php echo $def_slider; ?>" alt="">
+                        </div>
                         <?php
                     }
                     ?>
@@ -637,82 +634,37 @@ $modul = new Modul();
 
         <!-- Footer area-->
         <div class="footer-area">
-
             <div class=" footer">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                        <div class="col-md-4 col-sm-6 wow fadeInRight animated">
                             <div class="single-footer">
-                                <h4>About us </h4>
+                                <h4>Hubungi Kami </h4>
                                 <div class="footer-title-line"></div>
 
-                                <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
-                                <p>Lorem ipsum dolor cum necessitatibus su quisquam molestias. Vel unde, blanditiis.</p>
+                                <img src="assets/img/logo4.png" alt="" class="wow pulse" data-wow-delay="1s">
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> Gedung B.3 Lantai 6, Mabes TNI AL - Cilangkap
+                                        Jakarta Timur. 13870</li>
                                     <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
                                     <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                        <div class="col-md-4 col-sm-6 wow fadeInRight animated">
                             <div class="single-footer">
-                                
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                            <div class="single-footer">
-                                <h4>Last News</h4>
+                                <h4>Akses Cepat </h4>
                                 <div class="footer-title-line"></div>
-                                <ul class="footer-blog">
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="assets/img/demo/small-proerty-2.jpg">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6> 
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li> 
-
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="assets/img/demo/small-proerty-2.jpg">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6> 
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li> 
-
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="assets/img/demo/small-proerty-2.jpg">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6> 
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li> 
-
-
+                                <ul class="footer-menu">
+                                    <li><a href="<?php echo base_url(); ?>/home">Home</a>  </li> 
+                                    <li><a href="<?php echo base_url(); ?>/syarat_ppmd">Syarat Perumahan</a>  </li> 
+                                    <li><a href="<?php echo base_url(); ?>/login">Login </a></li> 
+                                    <li><a href="<?php echo base_url(); ?>/page_produk">Produk PPMD</a></li> 
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                        <div class="col-md-4 col-sm-6 wow fadeInRight animated">
                             <div class="single-footer news-letter">
                                 <h4>Stay in touch</h4>
                                 <div class="footer-title-line"></div>
@@ -748,18 +700,8 @@ $modul = new Modul();
                 <div class="container">
                     <div class="row">
                         <div class="pull-left">
-                            <span> (C) <a href="https://pramediaenginering.com/">PPMD</a> , All rights reserved 2022  </span> 
+                            <span> (C) <a href="http://www.KimaroTec.com">Kukuh Andriyanto</a> , All rights reserved 2022  </span> 
                         </div> 
-                        <div class="bottom-menu pull-right"> 
-                            <!--
-                            <ul> 
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">Home</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.3s">Property</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.4s">Faq</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.6s">Contact</a></li>
-                            </ul>
-                            -->
-                        </div>
                     </div>
                 </div>
             </div>
@@ -780,9 +722,9 @@ $modul = new Modul();
         <script src="<?php echo base_url(); ?>/depan/assets/js/price-range.js"></script>
         <script src="<?php echo base_url(); ?>/depan/assets/js/main.js"></script>
         <script type="text/javascript">
-            function login(){
-                window.location.href = "<?php echo base_url(); ?>/login";
-            }
+                            function login() {
+                                window.location.href = "<?php echo base_url(); ?>/login";
+                            }
         </script>
     </body>
 </html>

@@ -11,10 +11,12 @@ class Home extends BaseController{
     
     public function __construct() {
         $this->model = new Mcustom();
-        $this->modul= new Modul();
+        $this->modul = new Modul();
     }
     
     public function index(){
+        $data['menu'] = $this->request->uri->getSegment(1);
+        
         $jmliden = $this->model->getAllQR("SELECT count(*) as jml FROM identitas;")->jml;
         if($jmliden > 0){
             $tersimpan = $this->model->getAllQR("SELECT * FROM identitas;");
@@ -53,7 +55,13 @@ class Home extends BaseController{
         
         // membaca slider
         $data['slider'] = $this->model->getAll("slider");
-            
-        return view('depan/index', $data);
+        
+        $data['modul'] = $this->modul;
+        $data['model'] = $this->model;
+        
+        echo view('depan/header', $data);
+        echo view('depan/menu');
+        echo view('depan/content');
+        echo view('depan/footer');
     }
 }

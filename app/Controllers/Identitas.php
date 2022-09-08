@@ -46,6 +46,7 @@ class Identitas extends BaseController {
                 $data['tlp'] = $tersimpan->tlp;
                 $data['fax'] = $tersimpan->fax;
                 $data['website'] = $tersimpan->website;
+                $data['email'] = $tersimpan->email;
                 $deflogo = base_url().'/images/noimg.jpg';
                 if(strlen($tersimpan->logo) > 0){
                     if(file_exists($this->modul->getPathApp().$tersimpan->logo)){
@@ -64,6 +65,7 @@ class Identitas extends BaseController {
                 $data['tlp'] = "";
                 $data['fax'] = "";
                 $data['website'] = "";
+                $data['email'] = "";
                 $data['logo'] = base_url().'/images/noimg.jpg';
             }
 
@@ -118,6 +120,7 @@ class Identitas extends BaseController {
                     'kdpos' => $this->request->getPost('kdpos'),
                     'tlp' => $this->request->getPost('tlp'),
                     'fax' => $this->request->getPost('fax'),
+                    'email' => $this->request->getPost('email'),
                     'website' => $this->request->getPost('website'),
                     'logo' => $fileName
                 );
@@ -144,6 +147,7 @@ class Identitas extends BaseController {
             'kdpos' => $this->request->getPost('kdpos'),
             'tlp' => $this->request->getPost('tlp'),
             'fax' => $this->request->getPost('fax'),
+            'email' => $this->request->getPost('email'),
             'website' => $this->request->getPost('website')
         );
         $update = $this->model->updateNK("identitas", $data);

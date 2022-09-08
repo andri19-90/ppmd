@@ -17,6 +17,7 @@
         var tlp = document.getElementById('tlp').value;
         var fax = document.getElementById('fax').value;
         var website = document.getElementById('website').value;
+        var email = document.getElementById('email').value;
         var foto = $('#logo').prop('files')[0];
 
         var form_data = new FormData();
@@ -30,6 +31,7 @@
         form_data.append('fax', fax);
         form_data.append('website', website);
         form_data.append('file', foto);
+        form_data.append('email', email);
 
         $.ajax({
             url: "<?php echo base_url(); ?>/identitas/proses",
@@ -112,6 +114,12 @@
                         <label class="col-form-label col-sm-2 text-sm-right">Fax</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" placeholder="Fax" id="fax" name="fax" value="<?php echo $fax; ?>" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-2 text-sm-right">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Email" id="email" name="email" value="<?php echo $email; ?>" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">

@@ -242,7 +242,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="pull-left">
-                            <span> (C) <a href="https://pramediaenginering.com/">PPMD</a> , All rights reserved 2022  </span> 
+                            <span> (C) <a href="https://pramediaenginering.com/"> Kukuh Andriyanto </a> , All rights reserved 2022  </span> 
                         </div> 
                         <div class="bottom-menu pull-right"> 
                             <!--
