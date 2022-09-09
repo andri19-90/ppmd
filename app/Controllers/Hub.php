@@ -54,4 +54,23 @@ class Hub extends BaseController {
         echo view('depan/hub');
         echo view('depan/footer');
     }
+    
+    public function proses() {
+        $data = array(
+            'idkotakmasuk' => $this->model->autokode("K","idkotakmasuk","kotakmasuk", 2, 7),
+            'nm_depan' => $this->request->getPost('nm_depan'),
+            'nm_belakang' => $this->request->getPost('nm_belakang'),
+            'email' => $this->request->getPost('email'),
+            'judul' => $this->request->getPost('jdl'),
+            'pesan' => $this->request->getPost('pesan'),
+            'tanggal' => $this->modul->TanggalSekarang()
+        );
+        $simpan = $this->model->add("kotakmasuk",$data);
+        if($simpan == 1){
+            $status = "Data tersimpan";
+        }else{
+            $status = "Data gagal tersimpan";
+        }
+        echo json_encode(array("status" => $status));
+    }
 }

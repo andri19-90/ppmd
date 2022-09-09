@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 08, 2022 at 03:45 PM
+-- Generation Time: Sep 09, 2022 at 01:30 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -126,8 +126,16 @@ CREATE TABLE IF NOT EXISTS `kotakmasuk` (
   `email` varchar(45) NOT NULL,
   `judul` varchar(45) NOT NULL,
   `pesan` text NOT NULL,
+  `tanggal` date NOT NULL,
   PRIMARY KEY (`idkotakmasuk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kotakmasuk`
+--
+
+INSERT INTO `kotakmasuk` (`idkotakmasuk`, `nm_depan`, `nm_belakang`, `email`, `judul`, `pesan`, `tanggal`) VALUES
+('K00001', 'rampa', 'praditya', 'rampa@gmail.com', 'Lokasi', 'Lokasi di surabaya kira2 ada di mana ya ?', '2022-09-09');
 
 -- --------------------------------------------------------
 
@@ -182,6 +190,13 @@ CREATE TABLE IF NOT EXISTS `peta` (
   `textpeta` text NOT NULL,
   PRIMARY KEY (`idpeta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `peta`
+--
+
+INSERT INTO `peta` (`idpeta`, `textpeta`) VALUES
+('P00001', ' <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.499664531328!2d106.90917771431123!3d-6.329241863691006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ed6d9552523f%3A0x8c3b949f8b36c981!2sMabes%20TNI%20AL!5e0!3m2!1sid!2sid!4v1662684966921!5m2!1sid!2sid\" width=\"100%\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>');
 
 -- --------------------------------------------------------
 
