@@ -93,7 +93,7 @@ $routes->get('/syaratkhusus', 'Syaratkhusus::index');
 $routes->post('/syaratkhusus/proses', 'Syaratkhusus::proses');
 
 $routes->get('/peta', 'Peta::index');
-$routes->get('/peta/proses', 'Peta::proses');
+$routes->post('/peta/proses', 'Peta::proses');
 
 /*
  * --------------------------------------------------------------------

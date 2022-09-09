@@ -60,7 +60,6 @@ class Hakakses extends BaseController {
             echo view('back/head', $data);
             echo view('back/hak_akses/index');
             echo view('back/foot');
-//            echo view('back/hak_akses/coba');
         }else{
             $this->modul->halaman('login');
         }

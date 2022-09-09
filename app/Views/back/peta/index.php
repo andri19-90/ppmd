@@ -51,7 +51,7 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <textarea id="peta" name="peta" class="form-control" rows="8">
-                                
+                                <?php echo $txtpeta; ?>
                             </textarea>
                         </div>
                     </div>

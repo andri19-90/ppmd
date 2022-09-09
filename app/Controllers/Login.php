@@ -40,7 +40,10 @@ class Login extends BaseController{
             $data['logo'] = base_url().'/images/noimg.jpg';
         }
         
-        return view('depan/login', $data);
+        echo view('depan/header', $data);
+        echo view('depan/menu');
+        echo view('depan/login');
+        echo view('depan/footer');
     }
     
     public function proses() {

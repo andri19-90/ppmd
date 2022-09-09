@@ -42,6 +42,13 @@ class Hub extends BaseController {
             $data['logo'] = base_url().'/images/noimg.jpg';
         }
         
+        $cekpeta = $this->model->getAllQR("SELECT count(*) as jml FROM peta;")->jml;
+        if($cekpeta > 0){
+            $data['txtpeta'] = $this->model->getAllQR("SELECT textpeta FROM peta;")->textpeta;
+        }else{
+            $data['txtpeta'] = "";
+        }
+        
         echo view('depan/header', $data);
         echo view('depan/menu');
         echo view('depan/hub');

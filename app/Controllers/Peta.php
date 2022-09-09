@@ -67,6 +67,13 @@ class Peta extends BaseController {
                 $data['email'] = "";
                 $data['logo'] = base_url().'/images/noimg.jpg';
             }
+            
+            $cek = $this->model->getAllQR("SELECT count(*) as jml FROM peta;")->jml;
+            if($cek > 0){
+                $data['txtpeta'] = $this->model->getAllQR("SELECT textpeta FROM peta;")->textpeta;
+            }else{
+                $data['txtpeta'] = "";
+            }
 
             echo view('back/head', $data);
             echo view('back/peta/index');
@@ -78,9 +85,42 @@ class Peta extends BaseController {
     
     public function proses() {
         if(session()->get("logged_in")){
-            $cek = $this->model->getAllQR("")->jml;
+            $cek = $this->model->getAllQR("SELECT count(*) as jml FROM peta;")->jml;
+            if($cek > 0){
+                $status = $this->update();
+            }else{
+                $status = $this->simpan();
+            }
+            echo json_encode(array("status" => $status));
         }else{
             $this->modul->halaman('login');
         }
+    }
+    
+    private function simpan() {
+        $data = array(
+            'idpeta' => $this->model->autokode("P","idpeta","peta", 2, 7),
+            'textpeta' => $this->request->getPost('peta')
+        );
+        $simpan = $this->model->add("peta",$data);
+        if($simpan == 1){
+            $status = "Data tersimpan";
+        }else{
+            $status = "Data gagal tersimpan";
+        }
+        return $status;
+    }
+    
+    private function update() {
+        $data = array(
+            'textpeta' => $this->request->getPost('peta')
+        );
+        $simpan = $this->model->updateNK("peta",$data);
+        if($simpan == 1){
+            $status = "Data terupdate";
+        }else{
+            $status = "Data gagal terupdate";
+        }
+        return $status;
     }
 }
