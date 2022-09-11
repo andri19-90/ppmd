@@ -105,6 +105,13 @@ $routes->post('/peta/proses', 'Peta::proses');
 $routes->get('/kotakmasuk', 'Kotakmasuk::index');
 $routes->get('/kotakmasuk/ajaxlist', 'Kotakmasuk::ajaxlist');
 
+$routes->get('/vendor', 'Vendor::index');
+$routes->get('/vendor/ajaxlist', 'Vendor::ajaxlist');
+$routes->post('/vendor/ajax_add', 'Vendor::ajax_add');
+$routes->post('/vendor/ganti/(:any)', 'Vendor::ganti/$1');
+$routes->post('/vendor/ajax_edit', 'Vendor::ajax_edit');
+$routes->post('/vendor/hapus/(:any)', 'Vendor::hapus/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
