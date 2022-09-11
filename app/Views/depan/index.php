@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<?php
-use App\Models\Mcustom;
-use App\Libraries\Modul;
-
-$modul = new Modul();
-$model = new Mcustom();
-?>
 <html class="no-js">
     <head>
         <meta charset="utf-8">

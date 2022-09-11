@@ -73,6 +73,13 @@ class Produk extends BaseController {
             $data['lk'] = "";
             $data['ig'] = "";
         }
+        if(session()->get("logged_nonadmin")){
+            $data['idusers'] = session()->get("idusers");
+            $data['nama'] = session()->get("nama");
+        }else{
+            $data['idusers'] = "";
+            $data['nama'] = "";
+        }
         
         echo view('depan/header', $data);
         echo view('depan/menu');

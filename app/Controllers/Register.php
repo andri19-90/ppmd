@@ -51,8 +51,33 @@ class Register extends BaseController{
     
     public function proses() {
         clearstatcache();
-        
-        $status = "atika";
+        $cek1 = $this->model->getAllQR("select count(*) as jml from users where nrp = '".$this->request->getPost('nrp')."';")->jml;
+        if($cek1 > 0){
+            $status = "Gunakan NRP lain";
+        }else{
+            $cek2 = $this->model->getAllQR("select count(*) as jml from users where email = '".$this->request->getPost('email')."';")->jml;
+            if($cek2 > 0){
+                $status = "Gunakan email lain";
+            }else{
+                $data = array(
+                    'idusers' => $this->model->autokode("U","idusers","users", 2, 7),
+                    'nrp' => $this->request->getPost('nrp'),
+                    'pass' => $this->modul->enkrip_pass($this->request->getPost('pass')),
+                    'nama' => $this->request->getPost('nama'),
+                    'email' => $this->request->getPost('email'),
+                    'idkorps' => $this->request->getPost('korps'),
+                    'idpangkat' => $this->request->getPost('pangkat'),
+                    'idrole' => 'R00002',
+                    'foto' => ''
+                );
+                $simpan = $this->model->add("users",$data);
+                if($simpan == 1){
+                    $status = "Register berhasil";
+                }else{
+                    $status = "Register gagal";
+                }
+            }
+        }
         echo json_encode(array("status" => $status));
     }
 }

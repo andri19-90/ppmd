@@ -38,11 +38,11 @@
                         </div>
                         -->
                         <div class="col text-right">
-                            <h5 class="mb-0">1 Remain</h5>
+                            <h5 class="mb-0"><?php echo $jml_pengguna; ?> Orang</h5>
                         </div>
                     </div>
                     <div class="progress mt-1">
-                        <div class="progress-bar bg-success" style="width:85%"></div>
+                        <div class="progress-bar bg-success" style="width:100%"></div>
                     </div>
                 </div>
             </div>
@@ -78,11 +78,11 @@
                         </div>
                         -->
                         <div class="col text-right">
-                            <h5 class="mb-0">55+</h5>
+                            <h5 class="mb-0"><?php echo $jml_admin; ?> Orang</h5>
                         </div>
                     </div>
                     <div class="progress mt-1">
-                        <div class="progress-bar bg-warning" style="width:35%"></div>
+                        <div class="progress-bar bg-warning" style="width:100%"></div>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 11, 2022 at 02:05 AM
+-- Generation Time: Sep 11, 2022 at 05:32 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -154,6 +154,13 @@ CREATE TABLE IF NOT EXISTS `media_sosial` (
   PRIMARY KEY (`idmedia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `media_sosial`
+--
+
+INSERT INTO `media_sosial` (`idmedia`, `tw`, `fb`, `gp`, `lk`, `ig`) VALUES
+('M00001', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/');
+
 -- --------------------------------------------------------
 
 --
@@ -234,7 +241,8 @@ CREATE TABLE IF NOT EXISTS `role` (
 
 INSERT INTO `role` (`idrole`, `nama_role`) VALUES
 ('R00001', 'ADMINISTRATOR'),
-('R00002', 'PERSONEL');
+('R00002', 'PERSONEL'),
+('R00003', 'SALES');
 
 -- --------------------------------------------------------
 
@@ -392,7 +400,8 @@ INSERT INTO `users` (`idusers`, `nrp`, `pass`, `nama`, `idrole`, `idkorps`, `idp
 ('U00012', '117200', 'aGtq', 'Zalferius Fransiskus Rette', 'R00002', 'K00022', 'P00014', '', 'rette@gmail.com'),
 ('U00013', '118190', 'aGtq', 'Gun Navyadi', 'R00002', 'K00021', 'P00013', '', 'gun@gmail.com'),
 ('U00014', '119200', 'aGtq', 'Eric Juanto', 'R00002', 'K00009', 'P00013', '', 'eric@gmail.com'),
-('U00015', '119201', 'aGtq', 'Syaiful Akbar', 'R00002', 'K00018', 'P00013', '', 'akbar@gmail.com');
+('U00015', '119201', 'aGtq', 'Syaiful Akbar', 'R00002', 'K00018', 'P00013', '', 'akbar@gmail.com'),
+('U00016', '111/P', 'aGtq', 'Rampa praditya', 'R00002', 'K00001', 'P00019', '', 'rampa@gmail.com');
 
 -- --------------------------------------------------------
 

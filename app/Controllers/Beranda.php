@@ -57,6 +57,10 @@ class Beranda extends BaseController{
                 $data['logo'] = base_url().'/images/noimg.jpg';
             }
             
+            // display kotak2
+            $data['jml_pengguna'] = $this->model->getAllQR("select count(*) as jml from users where idrole = 'R00002';")->jml;
+            $data['jml_admin'] = $this->model->getAllQR("select count(*) as jml from users where idrole = 'R00001';")->jml;
+            
             echo view('back/head', $data);
             echo view('back/content');
             echo view('back/foot');

@@ -11,7 +11,22 @@
         </div>
         <div class="collapse navbar-collapse yamm" id="navigation">
             <div class="button navbar-right">
+                <?php
+                if(strlen($idusers) > 0){
+                    ?>
+                <button class="navbar-btn nav-button wow bounceInRight login-social" onclick="logout();" data-wow-delay="0.4s">Logout : <?php echo $nama; ?></button>
+                <script type="text/javascript">
+                    function logout(){
+                        window.location.href = "<?php echo base_url(); ?>/login/logout";
+                    }
+                </script>
+                    <?php
+                }else{
+                    ?>
                 <button class="navbar-btn nav-button wow bounceInRight login" onclick="login();" data-wow-delay="0.4s">Login</button>
+                    <?php
+                }
+                ?>
             </div>
             <ul class="main-nav nav navbar-nav navbar-right">
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a <?php if($menu == "home"){ echo 'class="active"'; } ?> href="<?php echo base_url(); ?>/home">Home</a></li>

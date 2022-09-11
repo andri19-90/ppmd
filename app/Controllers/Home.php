@@ -15,6 +15,8 @@ class Home extends BaseController{
     }
     
     public function index(){
+        $data['model'] = $this->model;
+        $data['modul'] = $this->modul;
         $data['menu'] = $this->request->uri->getSegment(1);
         
         $jmliden = $this->model->getAllQR("SELECT count(*) as jml FROM identitas;")->jml;
@@ -73,6 +75,14 @@ class Home extends BaseController{
             $data['gp'] = "";
             $data['lk'] = "";
             $data['ig'] = "";
+        }
+        
+        if(session()->get("logged_nonadmin")){
+            $data['idusers'] = session()->get("idusers");
+            $data['nama'] = session()->get("nama");
+        }else{
+            $data['idusers'] = "";
+            $data['nama'] = "";
         }
         
         echo view('depan/header', $data);

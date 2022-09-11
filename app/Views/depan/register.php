@@ -135,6 +135,15 @@
                     alert(response.status);            
                     $('#btnProses').text('Register');
                     $('#btnProses').attr('disabled', false);
+                    
+                    if(response.status === "Register berhasil"){
+                        document.getElementById('nrp').value = "";
+                        document.getElementById('pass').value = "";
+                        document.getElementById('nama').value = "";
+                        document.getElementById('email').value = "";
+                        document.getElementById('korps').selectedIndex = "0";
+                        document.getElementById('pangkat').selectedIndex = "0";
+                    }
                 }, error: function (response) {
                     alert(response.status);
                     $('#btnProses').text('Register');

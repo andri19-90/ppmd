@@ -15,6 +15,10 @@ class Login extends BaseController{
     }
     
     public function index(){
+        $data['model'] = $this->model;
+        $data['modul'] = $this->modul;
+        $data['menu'] = $this->request->uri->getSegment(1);
+        
         $jmliden = $this->model->getAllQR("SELECT count(*) as jml FROM identitas;")->jml;
         if($jmliden > 0){
             $tersimpan = $this->model->getAllQR("SELECT * FROM identitas;");
@@ -38,6 +42,30 @@ class Login extends BaseController{
             $data['website'] = "";
             $data['email'] = "";
             $data['logo'] = base_url().'/images/noimg.jpg';
+        }
+        
+        $cek_medsos = $this->model->getAllQR("select count(*) as jml from media_sosial")->jml;
+        if($cek_medsos > 0){
+            $medsos = $this->model->getAllQR("select * from media_sosial");
+            $data['tw'] = $medsos->tw;
+            $data['fb'] = $medsos->fb;
+            $data['gp'] = $medsos->gp;
+            $data['lk'] = $medsos->lk;
+            $data['ig'] = $medsos->ig;
+        }else{
+            $data['tw'] = "";
+            $data['fb'] = "";
+            $data['gp'] = "";
+            $data['lk'] = "";
+            $data['ig'] = "";
+        }
+        
+        if(session()->get("logged_nonadmin")){
+            $data['idusers'] = session()->get("idusers");
+            $data['nama'] = session()->get("nama");
+        }else{
+            $data['idusers'] = "";
+            $data['nama'] = "";
         }
         
         echo view('depan/header', $data);
@@ -70,7 +98,16 @@ class Login extends BaseController{
                     ]);
                     $pesan = "ok";
                 }else if($data->idrole == "R00002"){
-                    $pesan = "Bukan hak akses anda";
+                    session()->set([
+                        'idusers' => $data->idusers,
+                        'nrp' => $data->nrp,
+                        'nama' => $data->nama,
+                        'role' => $data->idrole,
+                        'nama_role' => $data->nama_role,
+                        'email' => $data->email,
+                        'logged_nonadmin' => TRUE
+                    ]);
+                    $pesan = "nonadmin";
                 }
             }else{
                 $pesan = "Anda tidak berhak mengakses !";

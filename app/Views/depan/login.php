@@ -56,7 +56,7 @@
                         <input type="password" class="form-control" id="pass" name="pass">
                     </div>
                     <div class="text-center">
-                        <button id="btnProses" type="button" class="btn btn-default" onclick="proses();"> Sign In</button>
+                        <button id="btnProses" type="button" class="btn btn-default" onclick="proseslogin();"> Sign In</button>
                     </div>
                     <div class="form-group">
                         <a href="<?php echo base_url(); ?>/register">Belum punya akun ?</a>
@@ -73,7 +73,7 @@
 
     });
 
-    function proses() {
+    function proseslogin() {
 
         var email = document.getElementById('email').value;
         var pass = document.getElementById('pass').value;
@@ -104,12 +104,14 @@
 
                     if (response.status === "ok") {
                         window.location.href = "<?php echo base_url(); ?>/beranda";
-                    } else {
+                    } else if (response.status === "nonadmin") {
+                        window.location.href = "<?php echo base_url(); ?>/produk";
+                    }else {
                         alert(response.status);
                     }
 
                 }, error: function (response) {
-                    alert(response.status);
+                    alert("Error : " + response.status);
                     $('#btnProses').text('Sign In');
                     $('#btnProses').attr('disabled', false);
                 }
