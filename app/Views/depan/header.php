@@ -9,8 +9,8 @@
         <meta name="keyword" content="PPMD TNI AL, bootstrap, property, real-estate theme , bootstrap template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="<?php echo $logo; ?>" type="image/x-icon">
+        <link rel="icon" href="<?php echo $logo; ?>" type="image/x-icon">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/depan/assets/css/normalize.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/depan/assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/depan/assets/css/fontello.css">
@@ -42,12 +42,11 @@
                     <div class="col-md-2 col-md-offset-5  col-sm-3 col-sm-offset-1  col-xs-12">
                         <div class="header-half header-social">
                             <ul class="list-inline">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-vine"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="<?php echo $tw; ?>"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="<?php echo $fb; ?>"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="<?php echo $gp; ?>"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="<?php echo $lk; ?>"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="<?php echo $ig; ?>"><i class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </div>

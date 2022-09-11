@@ -46,10 +46,16 @@ $routes->get('/login', 'Login::index');
 $routes->post('/login/proses', 'Login::proses');
 $routes->get('/login/logout', 'Login::logout');
 
+$routes->get('/register', 'Register::index');
+$routes->post('/register/proses', 'Register::proses');
+
 $routes->get('/beranda', 'Beranda::index');
 
 $routes->get('/identitas', 'Identitas::index');
 $routes->post('/identitas/proses', 'Identitas::proses');
+
+$routes->get('/mediasosial', 'Mediasosial::index');
+$routes->post('/mediasosial/proses', 'Mediasosial::proses');
 
 $routes->get('/profile', 'Profile::index');
 $routes->post('/profile/proses', 'Profile::proses');

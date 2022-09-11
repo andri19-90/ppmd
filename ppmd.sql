@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 09, 2022 at 01:30 AM
+-- Generation Time: Sep 11, 2022 at 02:05 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -140,6 +140,23 @@ INSERT INTO `kotakmasuk` (`idkotakmasuk`, `nm_depan`, `nm_belakang`, `email`, `j
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `media_sosial`
+--
+
+DROP TABLE IF EXISTS `media_sosial`;
+CREATE TABLE IF NOT EXISTS `media_sosial` (
+  `idmedia` varchar(6) NOT NULL,
+  `tw` varchar(150) NOT NULL,
+  `fb` varchar(150) NOT NULL,
+  `gp` varchar(150) NOT NULL,
+  `lk` varchar(150) NOT NULL,
+  `ig` varchar(150) NOT NULL,
+  PRIMARY KEY (`idmedia`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pangkat`
 --
 
@@ -218,6 +235,43 @@ CREATE TABLE IF NOT EXISTS `role` (
 INSERT INTO `role` (`idrole`, `nama_role`) VALUES
 ('R00001', 'ADMINISTRATOR'),
 ('R00002', 'PERSONEL');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+DROP TABLE IF EXISTS `sales`;
+CREATE TABLE IF NOT EXISTS `sales` (
+  `idsales` varchar(6) NOT NULL,
+  `nama_sales` varchar(45) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `tlp` varchar(45) NOT NULL,
+  `idvendor` varchar(6) NOT NULL,
+  PRIMARY KEY (`idsales`),
+  KEY `FK_sales_vendor` (`idvendor`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_medsos`
+--
+
+DROP TABLE IF EXISTS `sales_medsos`;
+CREATE TABLE IF NOT EXISTS `sales_medsos` (
+  `idsales_medsos` varchar(6) NOT NULL,
+  `tw` varchar(150) NOT NULL,
+  `fb` varchar(150) NOT NULL,
+  `gp` varchar(150) NOT NULL,
+  `lk` varchar(150) NOT NULL,
+  `ig` varchar(150) NOT NULL,
+  `idsales` varchar(6) NOT NULL,
+  PRIMARY KEY (`idsales_medsos`),
+  KEY `FK_sales_medsos_sales` (`idsales`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -340,9 +394,38 @@ INSERT INTO `users` (`idusers`, `nrp`, `pass`, `nama`, `idrole`, `idkorps`, `idp
 ('U00014', '119200', 'aGtq', 'Eric Juanto', 'R00002', 'K00009', 'P00013', '', 'eric@gmail.com'),
 ('U00015', '119201', 'aGtq', 'Syaiful Akbar', 'R00002', 'K00018', 'P00013', '', 'akbar@gmail.com');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendor`
+--
+
+DROP TABLE IF EXISTS `vendor`;
+CREATE TABLE IF NOT EXISTS `vendor` (
+  `idvendor` varchar(6) NOT NULL,
+  `namavendor` varchar(45) NOT NULL,
+  `alamat` varchar(45) NOT NULL,
+  `tlp` varchar(45) NOT NULL,
+  `logo` varchar(150) NOT NULL,
+  `website` varchar(65) NOT NULL,
+  PRIMARY KEY (`idvendor`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `sales`
+--
+ALTER TABLE `sales`
+  ADD CONSTRAINT `FK_sales_vendor` FOREIGN KEY (`idvendor`) REFERENCES `vendor` (`idvendor`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sales_medsos`
+--
+ALTER TABLE `sales_medsos`
+  ADD CONSTRAINT `FK_sales_medsos_sales` FOREIGN KEY (`idsales`) REFERENCES `sales` (`idsales`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`

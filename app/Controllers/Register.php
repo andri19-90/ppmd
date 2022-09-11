@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Models\Mcustom;
 use App\Libraries\Modul;
 
-class Syarat extends BaseController{
+class Register extends BaseController{
     
     private $model;
     private $modul;
@@ -15,8 +15,6 @@ class Syarat extends BaseController{
     }
     
     public function index(){
-        $data['menu'] = $this->request->uri->getSegment(1);
-        
         $jmliden = $this->model->getAllQR("SELECT count(*) as jml FROM identitas;")->jml;
         if($jmliden > 0){
             $tersimpan = $this->model->getAllQR("SELECT * FROM identitas;");
@@ -42,41 +40,19 @@ class Syarat extends BaseController{
             $data['logo'] = base_url().'/images/noimg.jpg';
         }
         
-        $cek_khusus = $this->model->getAllQR("SELECT count(*) as jml FROM syarat_khusus;")->jml;
-        if($cek_khusus > 0){
-            $keterangan = $this->model->getAllQR("SELECT keterangan FROM syarat_khusus;")->keterangan;
-            $data['ket_khusus'] = $keterangan;
-        }else{
-            $data['ket_khusus'] = "";
-        }
-        
-        $cek_umum = $this->model->getAllQR("SELECT count(*) as jml FROM syarat_umum;")->jml;
-        if($cek_umum > 0){
-            $keterangan = $this->model->getAllQR("SELECT keterangan FROM syarat_umum;")->keterangan;
-            $data['ket_umum'] = $keterangan;
-        }else{
-            $data['ket_umum'] = "";
-        }
-        
-        $cek_medsos = $this->model->getAllQR("select count(*) as jml from media_sosial")->jml;
-        if($cek_medsos > 0){
-            $medsos = $this->model->getAllQR("select * from media_sosial");
-            $data['tw'] = $medsos->tw;
-            $data['fb'] = $medsos->fb;
-            $data['gp'] = $medsos->gp;
-            $data['lk'] = $medsos->lk;
-            $data['ig'] = $medsos->ig;
-        }else{
-            $data['tw'] = "";
-            $data['fb'] = "";
-            $data['gp'] = "";
-            $data['lk'] = "";
-            $data['ig'] = "";
-        }
+        $data['korps'] = $this->model->getAll("korps");
+        $data['pangkat'] = $this->model->getAllQ("select * from pangkat where idpangkat <> 'P00001';");
         
         echo view('depan/header', $data);
         echo view('depan/menu');
-        echo view('depan/syarat');
+        echo view('depan/register');
         echo view('depan/footer');
+    }
+    
+    public function proses() {
+        clearstatcache();
+        
+        $status = "atika";
+        echo json_encode(array("status" => $status));
     }
 }

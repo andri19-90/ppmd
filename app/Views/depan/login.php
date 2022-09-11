@@ -2,13 +2,14 @@
     <div class="container">
         <div class="row">
             <div class="page-head-content">
-                <h1 class="page-title">New account / Sign in </h1>               
+                <h1 class="page-title"> Sign in </h1>               
             </div>
         </div>
     </div>
 </div>
 <div class="register-area" style="background-color: rgb(249, 249, 249);">
     <div class="container">
+        <!--
         <div class="col-md-6">
             <div class="box-for overflow">
                 <div class="col-md-12 col-xs-12 register-blocks">
@@ -33,21 +34,32 @@
                 </div>
             </div>
         </div>
+        -->
 
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="box-for overflow">                         
-                <div class="col-md-12 col-xs-12 login-blocks">
+                <div class="col-md-6 col-xs-6 login-blocks">
+                    <div style="text-align: center; margin-top: 100px;" class="vertical-center">
+                        <img src="<?php echo $logo; ?>" style="width: 150px; height: auto;">
+                        <h6 style="margin-top: 20px;">DINAS PERAWATAN PERSONEL ANGKATAN LAUT</h6>
+                        <p>" Kesejahteraan Personel Angkatan Laut itu yang utama "</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 login-blocks">
                     <h2>Login : </h2> 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="emil">
+                        <input type="text" class="form-control" id="email" name="emil" autocomplete="off" autofocus>
                     </div>
                     <div class="form-group">
                         <label for="pass">Password</label>
                         <input type="password" class="form-control" id="pass" name="pass">
                     </div>
                     <div class="text-center">
-                        <button id="btnProses" type="button" class="btn btn-default" onclick="proses();"> Log in</button>
+                        <button id="btnProses" type="button" class="btn btn-default" onclick="proses();"> Sign In</button>
+                    </div>
+                    <div class="form-group">
+                        <a href="<?php echo base_url(); ?>/register">Belum punya akun ?</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +81,7 @@
         if (email === "") {
             alert("Email tidak boleh kosong");
         } else if (pass === "") {
-            alert("Password lama tidak boleh kosong");
+            alert("Password tidak boleh kosong");
         } else {
             $('#btnProses').text('Prosessing...');
             $('#btnProses').attr('disabled', true);

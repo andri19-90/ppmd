@@ -49,6 +49,22 @@ class Hub extends BaseController {
             $data['txtpeta'] = "";
         }
         
+        $cek_medsos = $this->model->getAllQR("select count(*) as jml from media_sosial")->jml;
+        if($cek_medsos > 0){
+            $medsos = $this->model->getAllQR("select * from media_sosial");
+            $data['tw'] = $medsos->tw;
+            $data['fb'] = $medsos->fb;
+            $data['gp'] = $medsos->gp;
+            $data['lk'] = $medsos->lk;
+            $data['ig'] = $medsos->ig;
+        }else{
+            $data['tw'] = "";
+            $data['fb'] = "";
+            $data['gp'] = "";
+            $data['lk'] = "";
+            $data['ig'] = "";
+        }
+        
         echo view('depan/header', $data);
         echo view('depan/menu');
         echo view('depan/hub');

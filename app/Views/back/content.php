@@ -10,11 +10,13 @@
         <div class="col-xl-3 col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5>Open Ticket</h5>
+                    <h5>Perumahan</h5>
                     <div class="row align-items-center">
+                        <!--
                         <div class="col">
                             <label class="badge badge-pill badge-primary">35% <i class="m-l-10 feather icon-arrow-up"></i></label>
                         </div>
+                        -->
                         <div class="col text-right">
                             <h5 class="mb-0">35</h5>
                         </div>
@@ -28,11 +30,13 @@
         <div class="col-xl-3 col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5>Completed Task</h5>
+                    <h5>Pengguna</h5>
                     <div class="row align-items-center">
+                        <!--
                         <div class="col">
                             <label class="badge badge-pill badge-success">85% <i class="m-l-10 feather icon-arrow-down"></i></label>
                         </div>
+                        -->
                         <div class="col text-right">
                             <h5 class="mb-0">1 Remain</h5>
                         </div>
@@ -46,11 +50,13 @@
         <div class="col-xl-3 col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5>Space Remain</h5>
+                    <h5>Pengajuan</h5>
                     <div class="row align-items-center">
+                        <!--
                         <div class="col">
                             <label class="badge badge-pill badge-danger">8% <i class="m-l-10 feather icon-arrow-down"></i></label>
                         </div>
+                        -->
                         <div class="col text-right">
                             <h5 class="mb-0">15 BG</h5>
                         </div>
@@ -64,11 +70,13 @@
         <div class="col-xl-3 col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5>New Followers</h5>
+                    <h5>Admin</h5>
                     <div class="row align-items-center">
+                        <!--
                         <div class="col">
                             <label class="badge badge-pill text-white badge-warning">15% <i class="m-l-10 feather icon-arrow-down"></i></label>
                         </div>
+                        -->
                         <div class="col text-right">
                             <h5 class="mb-0">55+</h5>
                         </div>

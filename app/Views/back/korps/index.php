@@ -22,7 +22,6 @@
     }
 
     function save() {
-        var kode = document.getElementById('kode').value;
         var nama = document.getElementById('nama').value;
         
         if (nama === '') {
@@ -38,19 +37,11 @@
                 url = "<?php echo base_url(); ?>/korps/ajax_edit";
             }
             
-            var form_data = new FormData();
-            form_data.append('kode', kode);
-            form_data.append('nama', nama);
-            
-            // ajax adding data to database
             $.ajax({
-                url: url,
-                dataType: 'JSON',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'POST',
+                url : url,
+                type: "POST",
+                data: $('#form').serialize(),
+                dataType: "JSON",
                 success: function (data) {
                     alert(data.status);
                     $('#modal_form').modal('hide');
