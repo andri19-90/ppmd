@@ -101,8 +101,11 @@
             type: "POST",
             dataType: "JSON",
             success: function (data) {
-                $('[name="kode"]').val(data.idkorps);
-                $('[name="nama"]').val(data.nama_korps);
+                $('[name="kode"]').val(data.idvendor);
+                $('[name="nama"]').val(data.namavendor);
+                $('[name="alamat"]').val(data.alamat);
+                $('[name="tlp"]').val(data.tlp);
+                $('[name="web"]').val(data.website);
             }, error: function (jqXHR, textStatus, errorThrown) {
                 alert('Error get data');
             }

@@ -170,6 +170,11 @@
                                     </a>
                                 </li>
                                 <li class="sidenav-item">
+                                    <a href="<?php echo base_url(); ?>/pengguna" class="sidenav-link">
+                                        <div>Pengguna</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
                                     <a href="<?php echo base_url(); ?>/vendor" class="sidenav-link">
                                         <div>Vendor Perumahan</div>
                                     </a>

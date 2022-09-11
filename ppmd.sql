@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 11, 2022 at 05:32 AM
+-- Generation Time: Sep 11, 2022 at 02:33 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `identitas` (
 --
 
 INSERT INTO `identitas` (`kode`, `instansi`, `slogan`, `tahun`, `pimpinan`, `alamat`, `kdpos`, `tlp`, `fax`, `website`, `email`, `logo`) VALUES
-('K00001', 'KOARMADA 2', 'Ghora Wira Madya Jala', 1985, 'Laksamana Muda TNI Dr. T.S.N.B. Hutabarat, M.M.S.', 'Gedung B.3 Lantai 6, Mabes TNI AL - Cilangkap Jakarta Timur. 13870', '60178', '+1 908 967 5906', '-', 'https://koarmada2.tnial.mil.id/', 'email@yourcompany.com', '1662301680_11fb6152ab058d044850.png');
+('K00001', 'KOARMADA 2', 'Ghora Wira Madya Jala', 1985, 'Laksamana Muda TNI Dr. T.S.N.B. Hutabarat, M.M.S.', 'Gedung B.3 Lantai 6, Mabes TNI AL - Cilangkap Jakarta Timur. 13870', '60178', '+1 908 967 5906', '-', 'https://koarmada2.tnial.mil.id/', 'email@tnial.com', '1662301680_11fb6152ab058d044850.png');
 
 -- --------------------------------------------------------
 
@@ -257,9 +257,8 @@ CREATE TABLE IF NOT EXISTS `sales` (
   `alamat` varchar(100) NOT NULL,
   `email` varchar(45) NOT NULL,
   `tlp` varchar(45) NOT NULL,
-  `idvendor` varchar(6) NOT NULL,
-  PRIMARY KEY (`idsales`),
-  KEY `FK_sales_vendor` (`idvendor`)
+  `foto` varchar(150) NOT NULL,
+  PRIMARY KEY (`idsales`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -421,14 +420,16 @@ CREATE TABLE IF NOT EXISTS `vendor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Constraints for dumped tables
+-- Dumping data for table `vendor`
 --
 
+INSERT INTO `vendor` (`idvendor`, `namavendor`, `alamat`, `tlp`, `logo`, `website`) VALUES
+('V00001', 'PRAMEDIA', 'Rungkut Megah Raya E/16', '085731803889', '1662895657_bf2a116705251844d598.ico', 'https://pramediaenginering.com/'),
+('V00002', 'Koarmada II', 'Dermaga Ujung Surabaya Jawa Timur 60165, Indo', '+62-31-3292706', '1662903187_82af1bd71112dfaf866f.png', 'https://koarmada2.tnial.mil.id/');
+
 --
--- Constraints for table `sales`
+-- Constraints for dumped tables
 --
-ALTER TABLE `sales`
-  ADD CONSTRAINT `FK_sales_vendor` FOREIGN KEY (`idvendor`) REFERENCES `vendor` (`idvendor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sales_medsos`

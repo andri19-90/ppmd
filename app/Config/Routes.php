@@ -112,6 +112,16 @@ $routes->post('/vendor/ganti/(:any)', 'Vendor::ganti/$1');
 $routes->post('/vendor/ajax_edit', 'Vendor::ajax_edit');
 $routes->post('/vendor/hapus/(:any)', 'Vendor::hapus/$1');
 
+$routes->get('/pengguna', 'Pengguna::index');
+$routes->get('/pengguna/ajaxlist', 'Pengguna::ajaxlist');
+
+$routes->get('/sales', 'Sales::index');
+$routes->get('/sales/ajaxlist', 'Sales::ajaxlist');
+$routes->post('/sales/ajax_add', 'Sales::ajax_add');
+$routes->post('/sales/ganti/(:any)', 'Sales::ganti/$1');
+$routes->post('/sales/ajax_edit', 'Sales::ajax_edit');
+$routes->post('/sales/hapus/(:any)', 'Sales::hapus/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
