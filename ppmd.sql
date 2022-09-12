@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 11, 2022 at 02:33 PM
+-- Generation Time: Sep 12, 2022 at 01:46 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -225,6 +225,35 @@ INSERT INTO `peta` (`idpeta`, `textpeta`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `produk`
+--
+
+DROP TABLE IF EXISTS `produk`;
+CREATE TABLE IF NOT EXISTS `produk` (
+  `idproduk` varchar(6) NOT NULL,
+  `gambar` varchar(150) NOT NULL,
+  `nama_produk` varchar(45) NOT NULL,
+  `harga` float NOT NULL DEFAULT '0',
+  `area` float NOT NULL DEFAULT '0',
+  `kota` varchar(45) NOT NULL,
+  `jml_bed` float NOT NULL DEFAULT '0',
+  `car_port` float NOT NULL DEFAULT '0',
+  `jml_bath` float NOT NULL DEFAULT '0',
+  `t_api` float DEFAULT '0',
+  `alamat_persil` varchar(100) NOT NULL,
+  `wastafel` float DEFAULT '0',
+  `kolam_renang` float DEFAULT '0',
+  `laundry` float DEFAULT '0',
+  `emergency_exit` float DEFAULT '0',
+  `jogging_path` float DEFAULT '0',
+  `idvendor` varchar(6) NOT NULL,
+  PRIMARY KEY (`idproduk`),
+  KEY `FK_produk_vendor` (`idvendor`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `role`
 --
 
@@ -260,6 +289,14 @@ CREATE TABLE IF NOT EXISTS `sales` (
   `foto` varchar(150) NOT NULL,
   PRIMARY KEY (`idsales`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`idsales`, `nama_sales`, `alamat`, `email`, `tlp`, `foto`) VALUES
+('S00001', 'Bambang', 'Sidoarjo', 'bambang@gmail.com', '085731803889', '1662945484_300fad5b6615bc8623b2.png'),
+('S00002', 'Anna Cambel', 'Sidoarjo', 'anna@gmail.com', '02837467283', '1662945706_9d198200edf9e42d6a03.png');
 
 -- --------------------------------------------------------
 
@@ -430,6 +467,12 @@ INSERT INTO `vendor` (`idvendor`, `namavendor`, `alamat`, `tlp`, `logo`, `websit
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `produk`
+--
+ALTER TABLE `produk`
+  ADD CONSTRAINT `FK_produk_vendor` FOREIGN KEY (`idvendor`) REFERENCES `vendor` (`idvendor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sales_medsos`

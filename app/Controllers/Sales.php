@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Models\Mcustom;
 use App\Libraries\Modul;
 
-class Vendor extends BaseController {
+class Sales extends BaseController {
     
     private $model;
     private $modul;
@@ -58,7 +58,7 @@ class Vendor extends BaseController {
             }
 
             echo view('back/head', $data);
-            echo view('back/vendor/index');
+            echo view('back/sales/index');
             echo view('back/foot');
         }else{
             $this->modul->halaman('login');
@@ -68,24 +68,23 @@ class Vendor extends BaseController {
     public function ajaxlist() {
         if(session()->get("logged_in")){
             $data = array();
-            $list = $this->model->getAll("vendor");
+            $list = $this->model->getAll("sales");
             foreach ($list->getResult() as $row) {
                 $val = array();
                 $deflogo = base_url().'/images/noimg.jpg';
-                if(strlen($row->logo) > 0){
-                    if(file_exists($this->modul->getPathApp().$row->logo)){
-                        $deflogo = base_url().'/uploads/'.$row->logo;
+                if(strlen($row->foto) > 0){
+                    if(file_exists($this->modul->getPathApp().$row->foto)){
+                        $deflogo = base_url().'/uploads/'.$row->foto;
                     }
                 }
                 $val[] = '<img src="'.$deflogo.'" style="width: 100px;" class="img-thumbnail" alt="alt"/>';
-                $val[] = $row->namavendor;
+                $val[] = $row->nama_sales;
                 $val[] = $row->alamat;
                 $val[] = $row->tlp;
-                $val[] = $row->website;
+                $val[] = $row->email;
                 $val[] = '<div style="text-align: center;">'
-                        . '<button type="button" class="btn btn-xs btn-success btn-fw" onclick="ganti('."'".$row->idvendor."'".')">Ganti</button>&nbsp;'
-                        . '<button type="button" class="btn btn-xs btn-danger btn-fw" onclick="hapus('."'".$row->idvendor."'".','."'".$row->namavendor."'".')">Hapus</button><br>'
-                        . '<button type="button" class="btn btn-xs btn-info btn-block btn-fw" onclick="produk('."'".$row->idvendor."'".')">Produk</button>'
+                        . '<button type="button" class="btn btn-xs btn-success btn-fw" onclick="ganti('."'".$row->idsales."'".')">Ganti</button>&nbsp;'
+                        . '<button type="button" class="btn btn-xs btn-danger btn-fw" onclick="hapus('."'".$row->idsales."'".','."'".$row->nama_sales."'".')">Hapus</button>'
                         . '</div>';
                 $data[] = $val;
             }
@@ -124,14 +123,14 @@ class Vendor extends BaseController {
             $status_upload = $file->move($this->modul->getPathApp(), $fileName);
             if($status_upload){
                 $data = array(
-                    'idvendor' => $this->model->autokode("V","idvendor","vendor", 2, 7),
-                    'namavendor' => $this->request->getPost('nama'),
+                    'idsales' => $this->model->autokode("S","idsales","sales", 2, 7),
+                    'nama_sales' => $this->request->getPost('nama'),
                     'alamat' => $this->request->getPost('alamat'),
                     'tlp' => $this->request->getPost('tlp'),
-                    'logo' => $fileName,
-                    'website' => $this->request->getPost('web')
+                    'foto' => $fileName,
+                    'email' => $this->request->getPost('email')
                 );
-                $simpan = $this->model->add("vendor",$data);
+                $simpan = $this->model->add("sales",$data);
                 if($simpan == 1){
                     $status = "Data tersimpan";
                 }else{
@@ -146,14 +145,14 @@ class Vendor extends BaseController {
     
     private function simpan_tanpa() {
         $data = array(
-            'idvendor' => $this->model->autokode("V","idvendor","vendor", 2, 7),
-            'namavendor' => $this->request->getPost('nama'),
+            'idsales' => $this->model->autokode("S","idsales","sales", 2, 7),
+            'nama_sales' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
             'tlp' => $this->request->getPost('tlp'),
-            'logo' => '',
-            'website' => $this->request->getPost('web')
+            'foto' => '',
+            'email' => $this->request->getPost('email')
         );
-        $simpan = $this->model->add("vendor",$data);
+        $simpan = $this->model->add("sales",$data);
         if($simpan == 1){
             $status = "Data tersimpan";
         }else{
@@ -164,8 +163,8 @@ class Vendor extends BaseController {
     
     public function ganti(){
         if(session()->get("logged_in")){
-            $kondisi['idvendor'] = $this->request->uri->getSegment(3);
-            $data = $this->model->get_by_id("vendor", $kondisi);
+            $kondisi['idsales'] = $this->request->uri->getSegment(3);
+            $data = $this->model->get_by_id("sales", $kondisi);
             echo json_encode($data);
         }else{
             $this->modul->halaman('login');
@@ -190,7 +189,7 @@ class Vendor extends BaseController {
     }
     
     private function update_dengan() {
-        $lawas = $this->model->getAllQR("SELECT logo FROM vendor where idvendor = '".$this->request->getPost('kode')."';")->logo;
+        $lawas = $this->model->getAllQR("SELECT foto FROM sales where idsales = '".$this->request->getPost('kode')."';")->foto;
         if(strlen($lawas) > 0){
             if(file_exists($this->modul->getPathApp().$lawas)){
                 unlink($this->modul->getPathApp().$lawas);
@@ -207,14 +206,14 @@ class Vendor extends BaseController {
             $status_upload = $file->move($this->modul->getPathApp(), $fileName);
             if($status_upload){
                 $data = array(
-                    'namavendor' => $this->request->getPost('nama'),
+                    'nama_sales' => $this->request->getPost('nama'),
                     'alamat' => $this->request->getPost('alamat'),
                     'tlp' => $this->request->getPost('tlp'),
-                    'logo' => $fileName,
-                    'website' => $this->request->getPost('web')
+                    'foto' => $fileName,
+                    'email' => $this->request->getPost('email')
                 );
-                $kond['idvendor'] = $this->request->getPost('kode');
-                $simpan = $this->model->update("vendor",$data, $kond);
+                $kond['idsales'] = $this->request->getPost('kode');
+                $simpan = $this->model->update("sales",$data, $kond);
                 if($simpan == 1){
                     $status = "Data terupdate";
                 }else{
@@ -229,13 +228,13 @@ class Vendor extends BaseController {
     
     private function update_tanpa() {
         $data = array(
-            'namavendor' => $this->request->getPost('nama'),
+            'nama_sales' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
             'tlp' => $this->request->getPost('tlp'),
-            'website' => $this->request->getPost('web')
+            'email' => $this->request->getPost('email')
         );
-        $kond['idvendor'] = $this->request->getPost('kode');
-        $simpan = $this->model->update("vendor",$data, $kond);
+        $kond['idsales'] = $this->request->getPost('kode');
+        $simpan = $this->model->update("sales",$data, $kond);
         if($simpan == 1){
             $status = "Data terupdate";
         }else{
@@ -246,15 +245,15 @@ class Vendor extends BaseController {
     
     public function hapus() {
         if(session()->get("logged_in")){
-            $kond['idvendor'] = $this->request->uri->getSegment(3);
-            $lawas = $this->model->getAllQR("SELECT logo FROM vendor where idvendor = '".$kond['idvendor']."';")->logo;
+            $kond['idsales'] = $this->request->uri->getSegment(3);
+            $lawas = $this->model->getAllQR("SELECT foto FROM sales where idsales = '".$kond['idsales']."';")->foto;
             if(strlen($lawas) > 0){
                 if(file_exists($this->modul->getPathApp().$lawas)){
                     unlink($this->modul->getPathApp().$lawas);
                 }
             }
 
-            $hapus = $this->model->delete("vendor",$kond);
+            $hapus = $this->model->delete("sales",$kond);
             if($hapus == 1){
                 $status = "Data terhapus";
             }else{

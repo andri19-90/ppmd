@@ -148,7 +148,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidenav-item <?php if($menu == "hakakses" || $menu == "vendor" || $menu == "korps" || $menu == "pangkat") { echo 'active open'; } ?>">
+                        <li class="sidenav-item <?php if($menu == "hakakses" || $menu == "vendor" || $menu == "korps" || $menu == "pangkat" || $menu == "sales") { echo 'active open'; } ?>">
                             <a href="javascript:" class="sidenav-link sidenav-toggle">
                                 <i class="sidenav-icon feather icon-layers"></i>
                                 <div>Master</div>
@@ -172,6 +172,11 @@
                                 <li class="sidenav-item">
                                     <a href="<?php echo base_url(); ?>/pengguna" class="sidenav-link">
                                         <div>Pengguna</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a href="<?php echo base_url(); ?>/sales" class="sidenav-link">
+                                        <div>Sales</div>
                                     </a>
                                 </li>
                                 <li class="sidenav-item">
