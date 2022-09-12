@@ -15,6 +15,9 @@ class Produk extends BaseController {
     }
     
     public function index(){
+        $data['model'] = $this->model;
+        $data['modul'] = $this->modul;
+        
         $data['menu'] = $this->request->uri->getSegment(1);
         
         $jmliden = $this->model->getAllQR("SELECT count(*) as jml FROM identitas;")->jml;
@@ -80,6 +83,8 @@ class Produk extends BaseController {
             $data['idusers'] = "";
             $data['nama'] = "";
         }
+        
+        $data['produk'] = $this->model->getAllQ("SELECT * FROM produk;");
         
         echo view('depan/header', $data);
         echo view('depan/menu');

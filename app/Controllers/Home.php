@@ -84,6 +84,8 @@ class Home extends BaseController{
             $data['idusers'] = "";
             $data['nama'] = "";
         }
+        // menampilkan produk terbaru dengan limit 12
+        $data['produk'] = $this->model->getAllQ("SELECT * FROM produk limit 12;");
         
         echo view('depan/header', $data);
         echo view('depan/menu');

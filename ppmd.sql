@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 12, 2022 at 01:46 AM
+-- Generation Time: Sep 12, 2022 at 04:17 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -235,21 +235,33 @@ CREATE TABLE IF NOT EXISTS `produk` (
   `nama_produk` varchar(45) NOT NULL,
   `harga` float NOT NULL DEFAULT '0',
   `area` float NOT NULL DEFAULT '0',
+  `persil` varchar(100) NOT NULL,
   `kota` varchar(45) NOT NULL,
   `jml_bed` float NOT NULL DEFAULT '0',
   `car_port` float NOT NULL DEFAULT '0',
   `jml_bath` float NOT NULL DEFAULT '0',
   `t_api` float DEFAULT '0',
-  `alamat_persil` varchar(100) NOT NULL,
   `wastafel` float DEFAULT '0',
   `kolam_renang` float DEFAULT '0',
   `laundry` float DEFAULT '0',
   `emergency_exit` float DEFAULT '0',
   `jogging_path` float DEFAULT '0',
   `idvendor` varchar(6) NOT NULL,
+  `deskripsi_singkat` text,
   PRIMARY KEY (`idproduk`),
   KEY `FK_produk_vendor` (`idvendor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`idproduk`, `gambar`, `nama_produk`, `harga`, `area`, `persil`, `kota`, `jml_bed`, `car_port`, `jml_bath`, `t_api`, `wastafel`, `kolam_renang`, `laundry`, `emergency_exit`, `jogging_path`, `idvendor`, `deskripsi_singkat`) VALUES
+('P00001', '1662953361_d8d256a993f5e58d6fb8.jpg', 'SUPER NICE VILLA', 150000000, 120, 'Jalan sunter no 21 kepanjen', 'Sidoarjo', 1, 1, 1, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
+('P00002', '1662953445_81af61014f58b21642f2.jpg', 'SUPER NICE VILLA', 750000000, 350, 'Jalan sunter no 22 kepanjen', 'Surabaya', 2, 1, 2, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
+('P00003', '1662953508_f8eca3809f6ec5f721b5.jpg', 'SUPER NICE VILLA', 250000000, 120, 'Jalan sunter no 26 kepanjen', 'Malang', 1, 1, 1, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
+('P00004', '1662954767_fbe136aaa3ea16b4392f.jpg', 'SUPER NICE VILLA', 500000000, 130, 'Jalan sunter no 24 kepanjen', 'Gresik', 3, 2, 1, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
+('P00005', '1662954850_4d44ca1df6b215978499.jpg', 'Grand Havana', 1500000000, 500, 'Jl Ir. Soekarno', 'Surabaya', 4, 3, 3, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...');
 
 -- --------------------------------------------------------
 

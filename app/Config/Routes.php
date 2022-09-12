@@ -111,6 +111,12 @@ $routes->post('/vendor/ajax_add', 'Vendor::ajax_add');
 $routes->post('/vendor/ganti/(:any)', 'Vendor::ganti/$1');
 $routes->post('/vendor/ajax_edit', 'Vendor::ajax_edit');
 $routes->post('/vendor/hapus/(:any)', 'Vendor::hapus/$1');
+$routes->get('/vendor/detil/(:any)', 'Vendor::detil/$1');
+$routes->get('/vendor/ajaxdetil/(:any)', 'Vendor::ajaxdetil/$1');
+$routes->post('/vendor/ajax_add_detil', 'Vendor::ajax_add_detil');
+$routes->post('/vendor/ganti_detil/(:any)', 'Vendor::ganti_detil/$1');
+$routes->post('/vendor/ajax_edit_detil', 'Vendor::ajax_edit_detil');
+$routes->post('/vendor/hapusdetil/(:any)', 'Vendor::hapusdetil/$1');
 
 $routes->get('/pengguna', 'Pengguna::index');
 $routes->get('/pengguna/ajaxlist', 'Pengguna::ajaxlist');
