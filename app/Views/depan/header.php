@@ -26,6 +26,11 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>/depan/assets/css/owl.transitions.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/depan/assets/css/style.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/depan/assets/css/responsive.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <script src="<?php echo base_url(); ?>/depan/assets/js/jquery-1.10.2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" integrity="sha512-Gfrxsz93rxFuB7KSYlln3wFqBaXUc1jtt3dGCp+2jTb563qYvnUBM/GP2ZUtRC27STN/zUamFtVFAIsRFoT6/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
     </head>
     <body>
         <div class="header-connect">

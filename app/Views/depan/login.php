@@ -39,8 +39,8 @@
         <div class="col-md-12">
             <div class="box-for overflow">                         
                 <div class="col-md-6 col-xs-6 login-blocks">
-                    <div style="text-align: center; margin-top: 100px;" class="vertical-center">
-                        <img src="<?php echo $logo; ?>" style="width: 150px; height: auto;">
+                    <div style="text-align: center; margin-top: 30px;" class="vertical-center">
+                        <img src="<?php echo base_url(); ?>/depan/assets/img/logo3.jpg" style="width: 200px; height: auto;">
                         <h6 style="margin-top: 20px;">DINAS PERAWATAN PERSONEL ANGKATAN LAUT</h6>
                         <p>" Kesejahteraan Personel Angkatan Laut itu yang utama "</p>
                     </div>

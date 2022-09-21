@@ -6,9 +6,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         <meta name="description" content="Empire is one of the unique admin template built on top of Bootstrap 4 framework. It is easy to customize, flexible code styles, well tested, modern & responsive are the topmost key factors of Empire Dashboard Template" />
-        <meta name="keywords" content="PPMD, Perumahan Dinas TNI AL">
-        <meta name="author" content="https://pramediaenginering.com/" />
-        <link rel="icon" type="image/x-icon" href="<?php echo $logo; ?>">
+        <meta name="keywords" content="PPMD, Perumahan Pribadi Melalui Dinas TNI AL">
+        <meta name="author" content="" />
+        <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>/depan/assets/img/logo3.jpg">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/fonts/fontawesome.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/fonts/ionicons.css">
@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/libs/perfect-scrollbar/perfect-scrollbar.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/libs/datatables/datatables.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>/back/assets/libs/bootstrap-sweetalert/bootstrap-sweetalert.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
         <style>
             .vertical-center {
                 margin: 0;
@@ -81,11 +82,10 @@
                 <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-dark logo-dark">
                     <div class="app-brand">
                         <span class="app-brand-logo">
-                            <!--<img src="<?php // echo $logo; ?>" alt="Brand Logo" class="img-fluid" style="width: 45px; height: auto;">-->
+                            <img src="<?php echo base_url(); ?>/depan/assets/img/logo3.jpg" alt="Brand Logo" class="img-fluid" style="width: 35px; height: auto;">
                         </span>
-                        <a href="<?php echo base_url(); ?>/beranda" class="app-brand-text sidenav-text font-weight-normal ml-2">PPMD</a>
-                        <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
-                            <i class="ion ion-md-menu align-middle"></i>
+                        <a href="<?php echo base_url(); ?>/beranda" class="app-brand-text sidenav-text font-weight-normal ml-2">PPMD DISWATPERSAL</a>
+                        
                         </a>
                     </div>
                     <div class="sidenav-divider mt-0"></div>
@@ -170,6 +170,21 @@
                                     </a>
                                 </li>
                                 <li class="sidenav-item">
+                                    <a href="<?php echo base_url(); ?>/kotama" class="sidenav-link">
+                                        <div>Kotama</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a href="<?php echo base_url(); ?>/satker" class="sidenav-link">
+                                        <div>Satker</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a href="<?php echo base_url(); ?>/satuan" class="sidenav-link">
+                                        <div>Satuan</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
                                     <a href="<?php echo base_url(); ?>/pengguna" class="sidenav-link">
                                         <div>Pengguna</div>
                                     </a>
@@ -193,23 +208,13 @@
                             </a>
                             <ul class="sidenav-menu">
                                 <li class="sidenav-item">
-                                    <a href="layouts_sidenav_dark.html" class="sidenav-link" target="_blank">
-                                        <div>Navbar dark</div>
+                                    <a href="<?php echo base_url();?>/pengajuan" class="sidenav-link" target="_blank">
+                                        <div>Pengajuan PPMD</div>
                                     </a>
                                 </li>
                                 <li class="sidenav-item">
-                                    <a href="layouts_header_dark.html" class="sidenav-link" target="_blank">
-                                        <div>Header dark</div>
-                                    </a>
-                                </li>
-                                <li class="sidenav-item">
-                                    <a href="layouts_light.html" class="sidenav-link" target="_blank">
-                                        <div>Light layout</div>
-                                    </a>
-                                </li>
-                                <li class="sidenav-item">
-                                    <a href="layouts_horizontal.html" class="sidenav-link" target="_blank">
-                                        <div>Horizontal</div>
+                                    <a href="<?php echo base_url();?>/email" class="sidenav-link" target="_blank">
+                                        <div>Kirim Email</div>
                                     </a>
                                 </li>
                             </ul>
@@ -223,6 +228,8 @@
                     <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-dark container-p-x" id="layout-navbar">
 
                         <!-- Brand demo (see assets/css/demo/demo.css) -->
+                        <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
+                            <i class="ion ion-md-menu align-middle"></i>
                         <a href="<?php echo base_url(); ?>/beranda" class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
                             <span class="app-brand-logo demo">
                                 <!--<img src="<?php // echo $logo; ?>" alt="Brand Logo" class="img-fluid" style="width: 30px;">-->

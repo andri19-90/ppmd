@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 12, 2022 at 04:17 AM
+-- Generation Time: Sep 21, 2022 at 04:45 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `identitas` (
 --
 
 INSERT INTO `identitas` (`kode`, `instansi`, `slogan`, `tahun`, `pimpinan`, `alamat`, `kdpos`, `tlp`, `fax`, `website`, `email`, `logo`) VALUES
-('K00001', 'KOARMADA 2', 'Ghora Wira Madya Jala', 1985, 'Laksamana Muda TNI Dr. T.S.N.B. Hutabarat, M.M.S.', 'Gedung B.3 Lantai 6, Mabes TNI AL - Cilangkap Jakarta Timur. 13870', '60178', '+1 908 967 5906', '-', 'https://koarmada2.tnial.mil.id/', 'email@tnial.com', '1662301680_11fb6152ab058d044850.png');
+('K00001', 'DINAS PERAWATAN PERSONIL TNI ANGKATAN LAUT', 'Bermoral, Integritas dan Profesional', 1985, 'Brigjen (Mar) Herry Djuhaeri, MM., CHRMP.,', 'Gedung B.3 Lantai 6, Mabes TNI AL - Cilangkap Jakarta Timur. ', '13870', '(021) 8711785', '-(021) 8723501', 'https://ppmd.tnial.mil.id/', 'ppmd_tnial@gmail.com', '1663765336_b313f89246069e9b8eac.png');
 
 -- --------------------------------------------------------
 
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `media_sosial` (
 --
 
 INSERT INTO `media_sosial` (`idmedia`, `tw`, `fb`, `gp`, `lk`, `ig`) VALUES
-('M00001', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/');
+('M00001', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://instagram.com/pen_diswatpersal/');
 
 -- --------------------------------------------------------
 
@@ -257,11 +257,41 @@ CREATE TABLE IF NOT EXISTS `produk` (
 --
 
 INSERT INTO `produk` (`idproduk`, `gambar`, `nama_produk`, `harga`, `area`, `persil`, `kota`, `jml_bed`, `car_port`, `jml_bath`, `t_api`, `wastafel`, `kolam_renang`, `laundry`, `emergency_exit`, `jogging_path`, `idvendor`, `deskripsi_singkat`) VALUES
-('P00001', '1662953361_d8d256a993f5e58d6fb8.jpg', 'SUPER NICE VILLA', 150000000, 120, 'Jalan sunter no 21 kepanjen', 'Sidoarjo', 1, 1, 1, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
+('P00001', '1662953361_d8d256a993f5e58d6fb8.jpg', 'SUPER NICE VILLA', 150000000, 120, 'Jalan sunter no 21 kepanjen', 'Sidoarjo', 1, 1, 1, 0, 0, 0, 0, 0, 0, 'V00001', '<p>1. Pondasi : menggunakan batu kali</p>\r\n<p>2. pintu : kayu jati jepara</p>\r\n<p>&nbsp;</p>'),
 ('P00002', '1662953445_81af61014f58b21642f2.jpg', 'SUPER NICE VILLA', 750000000, 350, 'Jalan sunter no 22 kepanjen', 'Surabaya', 2, 1, 2, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
 ('P00003', '1662953508_f8eca3809f6ec5f721b5.jpg', 'SUPER NICE VILLA', 250000000, 120, 'Jalan sunter no 26 kepanjen', 'Malang', 1, 1, 1, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
 ('P00004', '1662954767_fbe136aaa3ea16b4392f.jpg', 'SUPER NICE VILLA', 500000000, 130, 'Jalan sunter no 24 kepanjen', 'Gresik', 3, 2, 1, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
-('P00005', '1662954850_4d44ca1df6b215978499.jpg', 'Grand Havana', 1500000000, 500, 'Jl Ir. Soekarno', 'Surabaya', 4, 3, 3, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...');
+('P00005', '1662954850_4d44ca1df6b215978499.jpg', 'Grand Havana', 1500000000, 500, 'Jl Ir. Soekarno', 'Surabaya', 4, 3, 3, 0, 0, 0, 0, 0, 0, 'V00001', 'Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...'),
+('P00006', '1663765699_7c257f1a38d34b2324f1.jpg', 'Fusia - A', 420000000, 90, 'Jln. Glandola No.4', 'Sidoarjo', 2, 1, 1, 0, 0, 0, 0, 0, 0, 'V00003', NULL),
+('P00007', '1663765775_48f4745ef7f1cc670e9b.jpg', 'Fusia - B', 420000000, 90, 'Jln. Gading Blok 2 No.3', 'Sidoarjo', 2, 1, 1, 0, 0, 0, 0, 0, 0, 'V00003', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produk_img`
+--
+
+DROP TABLE IF EXISTS `produk_img`;
+CREATE TABLE IF NOT EXISTS `produk_img` (
+  `idproduk_img` varchar(6) NOT NULL,
+  `gambar` varchar(150) NOT NULL,
+  `keterangan` varchar(150) NOT NULL,
+  `idproduk` varchar(6) NOT NULL,
+  PRIMARY KEY (`idproduk_img`),
+  KEY `FK_produk_img_key` (`idproduk`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `produk_img`
+--
+
+INSERT INTO `produk_img` (`idproduk_img`, `gambar`, `keterangan`, `idproduk`) VALUES
+('G00001', '1663766215_517f4fafbad8f33b9e5a.jpg', '', 'P00001'),
+('G00002', '1663765781_235e50946c2d1a4c383a.jpg', 'ini keterangan gambar 2', 'P00001'),
+('G00003', '1663765807_532ef7f38a16943931d6.jpg', '', 'P00001'),
+('G00004', '1663766629_f780efb22ec00209f098.jpg', '', 'P00001'),
+('G00005', '1663771787_963167eb3cc572d88f00.jpg', '', 'P00006'),
+('G00006', '1663771799_c7f630ba625c1a6081cc.jpg', '', 'P00006');
 
 -- --------------------------------------------------------
 
@@ -347,8 +377,9 @@ CREATE TABLE IF NOT EXISTS `slider` (
 --
 
 INSERT INTO `slider` (`idslider`, `gambar`) VALUES
-('S00001', '1662307907_2d3d972d152068ebab29.jpg'),
-('S00002', '1662307080_004054cb6f0b2aca3c3c.jpg');
+('S00003', '1663761808_211350d6bc6c46514408.jpg'),
+('S00004', '1663761826_c10b41249c6ecc0d3c99.jpg'),
+('S00005', '1663761838_5a88919ebf4e876909ba.jpg');
 
 -- --------------------------------------------------------
 
@@ -439,7 +470,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`idusers`, `nrp`, `pass`, `nama`, `idrole`, `idkorps`, `idpangkat`, `foto`, `email`) VALUES
-('U00001', 'ADMIN', 'aGtq', 'ADMINISTRATOR', 'R00001', 'K00001', 'P00001', '1662285401_5d458ef626a82ac04e36.png', 'admin@gmail.com'),
+('U00001', 'ADMIN', 'aGtq', 'ADMINISTRATOR', 'R00001', 'K00011', 'P00014', '1662285401_5d458ef626a82ac04e36.png', 'admin@gmail.com'),
 ('U00002', '112607', 'aGtq', 'Dika Yudha Pratama', 'R00002', 'K00018', 'P00014', '1661787110_48fb49bcc9f7ef80c0a1.png', 'dika@gmail.com'),
 ('U00008', '114567', 'aGtq', 'Vali Diky Paticelona', 'R00002', 'K00023', 'P00014', '', 'vali@gmail.com'),
 ('U00009', '115627', 'aGtq', 'Kukuh Adrianto', 'R00002', 'K00011', 'P00014', '', 'kukuh@gmail.com'),
@@ -474,7 +505,9 @@ CREATE TABLE IF NOT EXISTS `vendor` (
 
 INSERT INTO `vendor` (`idvendor`, `namavendor`, `alamat`, `tlp`, `logo`, `website`) VALUES
 ('V00001', 'PRAMEDIA', 'Rungkut Megah Raya E/16', '085731803889', '1662895657_bf2a116705251844d598.ico', 'https://pramediaenginering.com/'),
-('V00002', 'Koarmada II', 'Dermaga Ujung Surabaya Jawa Timur 60165, Indo', '+62-31-3292706', '1662903187_82af1bd71112dfaf866f.png', 'https://koarmada2.tnial.mil.id/');
+('V00002', 'Koarmada II', 'Dermaga Ujung Surabaya Jawa Timur 60165, Indo', '+62-31-3292706', '1662903187_82af1bd71112dfaf866f.png', 'https://koarmada2.tnial.mil.id/'),
+('V00003', 'PT. Bumi Jatikalang Sejahtera', 'Jl. Kav. DPR IV No. 8 Sidoarjo- Jatim. 61252', '(031) 8948889', '1663765593_91b427bc330fc3303b53.jpg', '@qualitygroup.id'),
+('V00004', 'Cilengsui Graha Raya Group', 'Boulevard Raya Coco Garden Kavling 1-5. Klap ', '', '1663765940_c190e68e86c84886ac42.png', '');
 
 --
 -- Constraints for dumped tables
@@ -485,6 +518,12 @@ INSERT INTO `vendor` (`idvendor`, `namavendor`, `alamat`, `tlp`, `logo`, `websit
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `FK_produk_vendor` FOREIGN KEY (`idvendor`) REFERENCES `vendor` (`idvendor`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `produk_img`
+--
+ALTER TABLE `produk_img`
+  ADD CONSTRAINT `FK_produk_img_key` FOREIGN KEY (`idproduk`) REFERENCES `produk` (`idproduk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sales_medsos`

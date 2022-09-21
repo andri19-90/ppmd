@@ -73,7 +73,6 @@
 
 
         <script src="<?php echo base_url(); ?>/depan/assets/js/modernizr-2.6.2.min.js"></script>
-        <script src="<?php echo base_url(); ?>/depan/assets/js/jquery-1.10.2.min.js"></script>
         <script src="<?php echo base_url(); ?>/depan/bootstrap/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>/depan/assets/js/bootstrap-select.min.js"></script>
         <script src="<?php echo base_url(); ?>/depan/assets/js/bootstrap-hover-dropdown.js"></script>
@@ -84,9 +83,24 @@
         <script src="<?php echo base_url(); ?>/depan/assets/js/icheck.min.js"></script>
         <script src="<?php echo base_url(); ?>/depan/assets/js/price-range.js"></script>
         <script src="<?php echo base_url(); ?>/depan/assets/js/main.js"></script>
+        <script src="<?php echo base_url(); ?>/depan/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>/depan/assets/js/jquery.validate.min.js"></script>
+        <script src="<?php echo base_url(); ?>/depan/assets/js/wizard.js"></script>
+        
         <script type="text/javascript">
             $(document).ready(function() {
-
+                $('#image-gallery').lightSlider({
+                    gallery: true,
+                    item: 1,
+                    thumbItem: 9,
+                    slideMargin: 0,
+                    speed: 500,
+                    auto: true,
+                    loop: true,
+                    onSliderLoad: function () {
+                        $('#image-gallery').removeClass('cS-hidden');
+                    }
+                });
             });
 
             function proses(){

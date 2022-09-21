@@ -260,7 +260,7 @@
                                     <div class="dot-hr"></div>
                                     <span class="pull-left"><b> Area :</b> <?php echo $row->area; ?> m<sup>2</sup> </span>
                                     <span class="proerty-price pull-right"> Rp. <?php echo number_format($row->harga); ?></span>
-                                    <p style="display: none;"><?php echo $row->deskripsi_singkat; ?></p>
+                                    <p style="display: none;"><?php //echo $row->deskripsi_singkat; ?></p>
                                     <div class="property-icon">
                                         <img src="<?php echo base_url(); ?>/depan/assets/img/icon/bed.png">(<?php echo $row->jml_bed; ?>)|
                                         <img src="<?php echo base_url(); ?>/depan/assets/img/icon/shawer.png">(<?php echo $row->jml_bath; ?>)|

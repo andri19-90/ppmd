@@ -331,7 +331,8 @@ class Vendor extends BaseController {
                 $val[] = $row->car_port;
                 $val[] = '<div style="text-align: center;">'
                         . '<button type="button" class="btn btn-xs btn-success btn-fw" onclick="ganti('."'".$row->idproduk."'".')">Ganti</button>&nbsp;'
-                        . '<button type="button" class="btn btn-xs btn-danger btn-fw" onclick="hapus('."'".$row->idproduk."'".','."'".$row->nama_produk."'".')">Hapus</button>'
+                        . '<button type="button" class="btn btn-xs btn-danger btn-fw" onclick="hapus('."'".$row->idproduk."'".','."'".$row->nama_produk."'".')">Hapus</button><br>'
+                        . '<button type="button" class="btn btn-xs btn-info btn-block btn-fw" onclick="detil('."'".$this->modul->enkrip_url($row->idproduk)."'".')">Detil</button>'
                         . '</div>';
                 $data[] = $val;
             }
@@ -530,5 +531,251 @@ class Vendor extends BaseController {
             }
         }
         return $status;
+    }
+    
+    public function subdetil() {
+        if(session()->get("logged_in")){
+            $data['idusers'] = session()->get("idusers");
+            $data['nama'] = session()->get("nama");
+            $data['role'] = session()->get("role");
+            $data['nm_role'] = session()->get("nama_role");
+            $data['menu'] = $this->request->uri->getSegment(1);
+            
+            // membaca foto profile
+            $def_foto = base_url().'/images/noimg.jpg';
+            $foto = $this->model->getAllQR("select foto from users where idusers = '".session()->get("idusers")."';")->foto;
+            if(strlen($foto) > 0){
+                if(file_exists($this->modul->getPathApp().$foto)){
+                    $def_foto = base_url().'/uploads/'.$foto;
+                }
+            }
+            $data['foto_profile'] = $def_foto;
+            
+            // membaca identitas
+            $jml_identitas = $this->model->getAllQR("SELECT count(*) as jml FROM identitas;")->jml;
+            if($jml_identitas > 0){
+                $tersimpan = $this->model->getAllQR("SELECT * FROM identitas;");
+                $deflogo = base_url().'/images/noimg.jpg';
+                if(strlen($tersimpan->logo) > 0){
+                    if(file_exists($this->modul->getPathApp().$tersimpan->logo)){
+                        $deflogo = base_url().'/uploads/'.$tersimpan->logo;
+                    }
+                }
+                $data['logo'] = $deflogo;
+                
+            }else{
+                $data['logo'] = base_url().'/images/noimg.jpg';
+            }
+            
+            $kode = $this->modul->dekrip_url($this->request->uri->getSegment(3));
+            $cek = $this->model->getAllQR("select count(*) as jml from produk where idproduk = '".$kode."';")->jml;
+            if($cek > 0){
+                // mencari kode vendor
+                $head = $this->model->getAllQR("select * from produk where idproduk = '".$kode."';");
+                $data['head'] = $head;
+                $data['idvendor'] = $this->modul->enkrip_url($head->idvendor);
+                
+                echo view('back/head', $data);
+                echo view('back/vendor/subdetil');
+                echo view('back/foot');
+            }else{
+                $this->modul->halaman('vendor');
+            }
+        }else{
+            $this->modul->halaman('login');
+        }
+    }
+    public function ajaxgambarlain() {
+        if(session()->get("logged_in")){
+            $idproduk = $this->request->uri->getSegment(3);
+            $data = array();
+            $no = 1;
+            $list = $this->model->getAllQ("SELECT * FROM produk_img where idproduk = '".$idproduk."';");
+            foreach ($list->getResult() as $row) {
+                $val = array();
+                $deflogo = base_url().'/images/noimg.jpg';
+                if(strlen($row->gambar) > 0){
+                    if(file_exists($this->modul->getPathApp().$row->gambar)){
+                        $deflogo = base_url().'/uploads/'.$row->gambar;
+                    }
+                }
+                $val[] = $no;
+                $val[] = '<img src="'.$deflogo.'" style="width: 100px;" class="img-thumbnail" alt="alt"/>';
+                $val[] = $row->keterangan;
+                $val[] = '<div style="text-align: center;">'
+                        . '<button type="button" class="btn btn-xs btn-success btn-fw" onclick="ganti('."'".$row->idproduk_img."'".')">Ganti</button>&nbsp;'
+                        . '<button type="button" class="btn btn-xs btn-danger btn-fw" onclick="hapus('."'".$row->idproduk_img."'".','."'".$no."'".')">Hapus</button>'
+                        . '</div>';
+                $data[] = $val;
+                $no++;
+            }
+            $output = array("data" => $data);
+            echo json_encode($output);
+        }else{
+            $this->modul->halaman('login');
+        }
+    }
+    
+    public function prosesdeskripsi() {
+        if(session()->get("logged_in")){
+            $data = array(
+                'deskripsi_singkat' => $this->request->getPost('ket')
+            );
+            $kond['idproduk'] = $this->request->getPost('kode');
+            $simpan = $this->model->update("produk",$data, $kond);
+            if($simpan == 1){
+                $status = "Deskripsi tersimpan";
+            }else{
+                $status = "Deskripsi gagal tersimpan";
+            }
+            echo json_encode(array("status" => $status));
+        }else{
+            $this->modul->halaman('login');
+        }
+    }
+    
+    public function ajax_add_gambar() {
+        if(session()->get("logged_in")){
+            if (isset($_FILES['file']['name'])) {
+                if(0 < $_FILES['file']['error']) {
+                    $pesan = "Error during file upload ".$_FILES['file']['error'];
+                }else{
+                    $pesan = $this->simpanfile();
+                }
+            }else{
+                $pesan = "File tidak ditemukan";
+            }
+            echo json_encode(array("status" => $pesan));
+        }else{
+            $this->modul->halaman('login');
+        }
+    }
+    
+    private function simpanfile() {
+        $file = $this->request->getFile('file');
+        $fileName = $file->getRandomName();
+        $info_file = $this->modul->info_file($file);
+        
+        if(file_exists($this->modul->getPathApp().'/'.$fileName)){
+            $status = "Gunakan nama file lain";
+        }else{
+            $status_upload = $file->move($this->modul->getPathApp(), $fileName);
+            if($status_upload){
+                $data = array(
+                    'idproduk_img' => $this->model->autokode("G","idproduk_img","produk_img", 2, 7),
+                    'gambar' => $fileName,
+                    'keterangan' => $this->request->getPost('keterangan'),
+                    'idproduk' => $this->request->getPost('idproduk')
+                );
+                $simpan = $this->model->add("produk_img", $data);
+                if($simpan == 1){
+                    $status = "Data tersimpan";
+                }else{
+                    $status = "Data gagal tersimpan";
+                }
+            }else{
+                $status = "File gagal terupload";
+            }
+        }
+        return $status;
+    }
+    
+    public function showgambar() {
+        if(session()->get("logged_in")){
+            $kondisi['idproduk_img'] = $this->request->uri->getSegment(3);
+            $data = $this->model->get_by_id("produk_img", $kondisi);
+            echo json_encode($data);
+        }else{
+            $this->modul->halaman('login');
+        }
+    }
+    
+    public function ajax_edit_gambar() {
+        if(session()->get("logged_in")){
+            if (isset($_FILES['file']['name'])) {
+                if(0 < $_FILES['file']['error']) {
+                    $pesan = "Error during file upload ".$_FILES['file']['error'];
+                }else{
+                    $pesan = $this->updatefile();
+                }
+            }else{
+                $pesan = $this->updatetanpa();
+            }
+            echo json_encode(array("status" => $pesan));
+        }else{
+            $this->modul->halaman('login');
+        }
+    }
+    
+    private function updatefile() {
+        $lawas = $this->model->getAllQR("SELECT gambar FROM produk_img where idproduk_img = '".$this->request->getPost('kode')."';")->gambar;
+        if(strlen($lawas) > 0){
+            if(file_exists($this->modul->getPathApp().$lawas)){
+                unlink($this->modul->getPathApp().$lawas);
+            }
+        }
+        
+        $file = $this->request->getFile('file');
+        $fileName = $file->getRandomName();
+        $info_file = $this->modul->info_file($file);
+        
+        if(file_exists($this->modul->getPathApp().'/'.$fileName)){
+            $status = "Gunakan nama file lain";
+        }else{
+            $status_upload = $file->move($this->modul->getPathApp(), $fileName);
+            if($status_upload){
+                $data = array(
+                    'gambar' => $fileName,
+                    'keterangan' => $this->request->getPost('keterangan')
+                );
+                $kond['idproduk_img'] = $this->request->getPost('kode');
+                $simpan = $this->model->update("produk_img", $data, $kond);
+                if($simpan == 1){
+                    $status = "Data terupdate";
+                }else{
+                    $status = "Data gagal terupdate";
+                }
+            }else{
+                $status = "File gagal terupload";
+            }
+        }
+        return $status;
+    }
+    
+    private function updatetanpa() {
+        $data = array(
+            'keterangan' => $this->request->getPost('keterangan')
+        );
+        $kond['idproduk_img'] = $this->request->getPost('kode');
+        $update = $this->model->update("produk_img", $data, $kond);
+        if($update == 1){
+            $status = "Data terupdate";
+        }else{
+            $status = "Data gagal terupdate";
+        }
+        return $status;
+    }
+    
+    public function hapusgambar() {
+        if(session()->get("logged_in")){
+            $kode = $this->request->uri->getSegment(3);
+            $lawas = $this->model->getAllQR("SELECT gambar FROM produk_img where idproduk_img = '".$kode."';")->gambar;
+            if(strlen($lawas) > 0){
+                if(file_exists($this->modul->getPathApp().$lawas)){
+                    unlink($this->modul->getPathApp().$lawas);
+                }
+            }
+        
+            $kond['idproduk_img'] = $kode;
+            $hapus = $this->model->delete("produk_img",$kond);
+            if($hapus == 1){
+                $status = "Data terhapus";
+            }else{
+                $status = "Data gagal terhapus";
+            }
+            echo json_encode(array("status" => $status));
+        }else{
+            $this->modul->halaman('login');
+        }
     }
 }

@@ -15,6 +15,7 @@ class Register extends BaseController{
     }
     
     public function index(){
+        $data['menu'] = $this->request->uri->getSegment(1);
         $jmliden = $this->model->getAllQR("SELECT count(*) as jml FROM identitas;")->jml;
         if($jmliden > 0){
             $tersimpan = $this->model->getAllQR("SELECT * FROM identitas;");
@@ -42,6 +43,30 @@ class Register extends BaseController{
         
         $data['korps'] = $this->model->getAll("korps");
         $data['pangkat'] = $this->model->getAllQ("select * from pangkat where idpangkat <> 'P00001';");
+        
+        $cek_medsos = $this->model->getAllQR("select count(*) as jml from media_sosial")->jml;
+        if($cek_medsos > 0){
+            $medsos = $this->model->getAllQR("select * from media_sosial");
+            $data['tw'] = $medsos->tw;
+            $data['fb'] = $medsos->fb;
+            $data['gp'] = $medsos->gp;
+            $data['lk'] = $medsos->lk;
+            $data['ig'] = $medsos->ig;
+        }else{
+            $data['tw'] = "";
+            $data['fb'] = "";
+            $data['gp'] = "";
+            $data['lk'] = "";
+            $data['ig'] = "";
+        }
+        
+        if(session()->get("logged_nonadmin")){
+            $data['idusers'] = session()->get("idusers");
+            $data['nama'] = session()->get("nama");
+        }else{
+            $data['idusers'] = "";
+            $data['nama'] = "";
+        }
         
         echo view('depan/header', $data);
         echo view('depan/menu');

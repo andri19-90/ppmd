@@ -140,7 +140,7 @@
     }
     
     function detil(kode){
-        window.location.href = "<?php echo base_url(); ?>/vendor/detil/" + kode;
+        window.location.href = "<?php echo base_url(); ?>/vendor/subdetil/" + kode;
     }
 
 </script>
