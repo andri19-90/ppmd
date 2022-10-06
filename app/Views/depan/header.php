@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-md-5 col-sm-8  col-xs-12">
                         <div class="header-half header-call">
-                            <p>
+                            <p style="color: white;">
                                 <span><i class="pe-7s-call"></i><?php echo $tlp; ?></span>
                                 <span><i class="pe-7s-mail"></i><?php echo $email; ?></span>
                             </p>

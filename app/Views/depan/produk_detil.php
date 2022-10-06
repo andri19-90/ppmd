@@ -134,42 +134,58 @@
                                 <div class="clear">
                                     <div class="col-xs-4 col-sm-4 dealer-face">
                                         <a href="">
-                                            <img src="assets/img/client-face1.png" class="img-circle">
+                                            <img src="<?php echo $logo_vendor; ?>" class="img-circle">
                                         </a>
                                     </div>
                                     <div class="col-xs-8 col-sm-8 ">
                                         <h3 class="dealer-name">
-                                            <a href="">Nathan James</a>
-                                            <span>Real Estate Agent</span>        
+                                            <a href=""><?php echo $vendor->namavendor; ?></a>
+                                            <br>
+                                            <span>Real Estate Vendor</span>        
                                         </h3>
                                         <div class="dealer-social-media">
-                                            <a class="twitter" target="_blank" href="">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                            <a class="facebook" target="_blank" href="">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                            <a class="gplus" target="_blank" href="">
-                                                <i class="fa fa-google-plus"></i>
-                                            </a>
-                                            <a class="linkedin" target="_blank" href="">
-                                                <i class="fa fa-linkedin"></i>
-                                            </a> 
-                                            <a class="instagram" target="_blank" href="">
-                                                <i class="fa fa-instagram"></i>
-                                            </a>       
+                                            <?php
+                                            if(strlen($tw) > 0){
+                                                ?>
+                                            <a class="twitter" target="_blank" href="<?php echo $tw; ?>"><i class="fa fa-twitter"></i></a>
+                                                <?php
+                                            }
+                                            
+                                            if(strlen($fb) > 0){
+                                                ?>
+                                            <a class="facebook" target="_blank" href="<?php echo $fb; ?>"><i class="fa fa-facebook"></i></a>
+                                                <?php
+                                            }
+                                            
+                                            if(strlen($gp) > 0){
+                                                ?>
+                                            <a class="gplus" target="_blank" href="<?php echo $gp; ?>"><i class="fa fa-google-plus"></i></a>
+                                                <?php
+                                            }
+                                            
+                                            if(strlen($lk) > 0){
+                                                ?>
+                                            <a class="linkedin" target="_blank" href="<?php echo $lk; ?>"><i class="fa fa-linkedin"></i></a> 
+                                                <?php
+                                            }
+                                            
+                                            if(strlen($ig) > 0){
+                                                ?>
+                                            <a class="instagram" target="_blank" href="<?php echo $ig; ?>"><i class="fa fa-instagram"></i></a>
+                                                <?php
+                                            }
+                                            ?>
                                         </div>
-
                                     </div>
                                 </div>
 
                                 <div class="clear">
                                     <ul class="dealer-contacts">                                       
-                                        <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
-                                        <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-                                        <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
+                                        <li><i class="pe-7s-map-marker strong"> </i> <?php echo $vendor->alamat; ?></li>
+                                        <li><i class="pe-7s-mail strong"> </i> <?php echo $vendor->email; ?></li>
+                                        <li><i class="pe-7s-call strong"> </i> <?php echo $vendor->tlp; ?></li>
                                     </ul>
-                                    <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+                                    <p><?php echo $vendor->deskripsi; ?></p>
                                 </div>
 
                             </div>
@@ -178,70 +194,43 @@
 
                     <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Similar Properties</h3>
+                            <h3 class="panel-title">Rekomendasi</h3>
                         </div>
                         <div class="panel-body recent-property-widget">
                             <ul>
+                                <?php
+                                foreach ($properti_lain->getResult() as $row) {
+                                    $logo = base_url().'/images/noimg.jpg';
+                                    if(strlen($row->gambar) > 0){
+                                        if(file_exists($modul->getPathApp().$row->gambar)){
+                                            $logo = base_url().'/uploads/'.$row->gambar;
+                                        }
+                                    }
+                                    ?>
                                 <li>
                                     <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                        <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
+                                        <a href="single.html"><img src="<?php echo $logo; ?>"></a>
                                         <span class="property-seeker">
-                                            <b class="b-1">A</b>
+                                            <b class="b-1"><?php echo $row->area; ?> M <sup>2</sup></b>
+                                            <!--
                                             <b class="b-2">S</b>
+                                            -->
                                         </span>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                        <h6> <a href="single.html">Super nice villa </a></h6>
-                                        <span class="property-price">3000000$</span>
+                                        <h6> <a href="single.html"><?php echo $row->nama_produk; ?></a></h6>
+                                        <span class="property-price"><?php echo 'Rp.'. number_format($row->harga); ?></span>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="col-md-3 col-sm-3  col-xs-3 blg-thumb p0">
-                                        <a href="single.html"><img src="assets/img/demo/small-property-1.jpg"></a>
-                                        <span class="property-seeker">
-                                            <b class="b-1">A</b>
-                                            <b class="b-2">S</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                        <h6> <a href="single.html">Super nice villa </a></h6>
-                                        <span class="property-price">3000000$</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                        <a href="single.html"><img src="assets/img/demo/small-property-3.jpg"></a>
-                                        <span class="property-seeker">
-                                            <b class="b-1">A</b>
-                                            <b class="b-2">S</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                        <h6> <a href="single.html">Super nice villa </a></h6>
-                                        <span class="property-price">3000000$</span>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                        <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                        <span class="property-seeker">
-                                            <b class="b-1">A</b>
-                                            <b class="b-2">S</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                        <h6> <a href="single.html">Super nice villa </a></h6>
-                                        <span class="property-price">3000000$</span>
-                                    </div>
-                                </li>
-
+                                    <?php
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
                     <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                         <div class="panel-heading">
-                            <h3 class="panel-title">Smart search</h3>
+                            <h3 class="panel-title">Pencarian</h3>
                         </div>
                         <div class="panel-body search-widget">
                             <form action="" class=" form-inline"> 
@@ -256,9 +245,7 @@
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-xs-6">
-
                                             <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City">
-
                                                 <option>New york, CA</option>
                                                 <option>Paris</option>
                                                 <option>Casablanca</option>
@@ -418,6 +405,8 @@
     });
 
     function ajukan() {
+        // cek sudah login apa belum
+        
         window.location.href = "<?php echo base_url(); ?>/ajukan";
     }
 

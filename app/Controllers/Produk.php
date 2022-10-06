@@ -132,8 +132,39 @@ class Produk extends BaseController {
         $kode = $this->modul->dekrip_url($this->request->uri->getSegment(3));
         $cek = $this->model->getAllQR("SELECT count(*) as jml FROM produk where idproduk = '".$kode."';")->jml;
         if($cek > 0){
-            $data['head'] = $this->model->getAllQR("SELECT * FROM produk where idproduk = '".$kode."';");
+            $head = $this->model->getAllQR("SELECT * FROM produk where idproduk = '".$kode."';");
+            $data['head'] = $head;
             $data['gambarlain'] = $this->model->getAllQ("SELECT idproduk_img, gambar FROM produk_img where idproduk = '".$kode."';");
+            // membaca yang menjual perumahan tersebut
+            $vendor = $this->model->getAllQR("select * from vendor where idvendor = '".$head->idvendor."';");
+            $data['vendor'] = $vendor;
+            $logo_vendor = base_url().'/images/noimg.jpg';
+            if(strlen($vendor->logo) > 0){
+                if(file_exists($this->modul->getPathApp().$vendor->logo)){
+                    $logo_vendor = base_url().'/uploads/'.$vendor->logo;
+                }
+            }
+            $data['logo_vendor'] = $logo_vendor;
+            
+            // medsos vendor
+            $cek = $this->model->getAllQR("SELECT count(*) as jml FROM vendor_medsos where idvendor = '".$vendor->idvendor."';")->jml;
+            if($cek > 0){
+                $medsos = $this->model->getAllQR("SELECT * FROM vendor_medsos where idvendor = '".$vendor->idvendor."';");
+                $data["tw"] = $medsos->tw;
+                $data["fb"] = $medsos->fb;
+                $data["gp"] = $medsos->gp;
+                $data["lk"] = $medsos->lk;
+                $data["ig"] = $medsos->ig;
+            }else{
+                $data["tw"] = "";
+                $data["fb"] = "";
+                $data["gp"] = "";
+                $data["lk"] = "";
+                $data["ig"] = "";
+            }
+            
+            // menampilkan data lain
+            $data['properti_lain'] = $this->model->getAllQ("SELECT * FROM produk where idproduk <> '".$kode."' limit 5;");
             
             echo view('depan/header', $data);
             echo view('depan/menu');

@@ -72,11 +72,11 @@ class Vendor extends BaseController {
                 $val[] = $row->namavendor;
                 $val[] = $row->alamat;
                 $val[] = $row->tlp;
-                $val[] = $row->website;
                 $val[] = '<div style="text-align: center;">'
-                        . '<button type="button" class="btn btn-xs btn-success btn-fw" onclick="ganti('."'".$row->idvendor."'".')">Ganti</button>&nbsp;'
-                        . '<button type="button" class="btn btn-xs btn-danger btn-fw" onclick="hapus('."'".$row->idvendor."'".','."'".$row->namavendor."'".')">Hapus</button><br>'
+                        . '<button type="button" class="btn btn-xs btn-success btn-block btn-fw" onclick="ganti('."'".$row->idvendor."'".')">Ganti</button>'
+                        . '<button type="button" class="btn btn-xs btn-danger btn-block btn-fw" onclick="hapus('."'".$row->idvendor."'".','."'".$row->namavendor."'".')">Hapus</button>'
                         . '<button type="button" class="btn btn-xs btn-info btn-block btn-fw" onclick="detil('."'".$this->modul->enkrip_url($row->idvendor)."'".')">Produk</button>'
+                        . '<button type="button" class="btn btn-xs btn-warning btn-block btn-fw" onclick="medsos('."'".$row->idvendor."'".')">Medsos</button>'
                         . '</div>';
                 $data[] = $val;
             }
@@ -120,7 +120,9 @@ class Vendor extends BaseController {
                     'alamat' => $this->request->getPost('alamat'),
                     'tlp' => $this->request->getPost('tlp'),
                     'logo' => $fileName,
-                    'website' => $this->request->getPost('web')
+                    'website' => $this->request->getPost('web'),
+                    'email' => $this->request->getPost('email'),
+                    'deskripsi' => $this->request->getPost('deskripsi')
                 );
                 $simpan = $this->model->add("vendor",$data);
                 if($simpan == 1){
@@ -142,7 +144,9 @@ class Vendor extends BaseController {
             'alamat' => $this->request->getPost('alamat'),
             'tlp' => $this->request->getPost('tlp'),
             'logo' => '',
-            'website' => $this->request->getPost('web')
+            'website' => $this->request->getPost('web'),
+            'email' => $this->request->getPost('email'),
+            'deskripsi' => $this->request->getPost('deskripsi')
         );
         $simpan = $this->model->add("vendor",$data);
         if($simpan == 1){
@@ -202,7 +206,9 @@ class Vendor extends BaseController {
                     'alamat' => $this->request->getPost('alamat'),
                     'tlp' => $this->request->getPost('tlp'),
                     'logo' => $fileName,
-                    'website' => $this->request->getPost('web')
+                    'website' => $this->request->getPost('web'),
+                    'email' => $this->request->getPost('email'),
+                    'deskripsi' => $this->request->getPost('deskripsi')
                 );
                 $kond['idvendor'] = $this->request->getPost('kode');
                 $simpan = $this->model->update("vendor",$data, $kond);
@@ -223,7 +229,9 @@ class Vendor extends BaseController {
             'namavendor' => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
             'tlp' => $this->request->getPost('tlp'),
-            'website' => $this->request->getPost('web')
+            'website' => $this->request->getPost('web'),
+            'email' => $this->request->getPost('email'),
+            'deskripsi' => $this->request->getPost('deskripsi')
         );
         $kond['idvendor'] = $this->request->getPost('kode');
         $simpan = $this->model->update("vendor",$data, $kond);
@@ -772,6 +780,75 @@ class Vendor extends BaseController {
                 $status = "Data terhapus";
             }else{
                 $status = "Data gagal terhapus";
+            }
+            echo json_encode(array("status" => $status));
+        }else{
+            $this->modul->halaman('login');
+        }
+    }
+    
+    public function loadmedsoss() {
+        if(session()->get("logged_in")){
+            $idvendor = $this->request->uri->getSegment(3);
+            $cek = $this->model->getAllQR("SELECT count(*) as jml FROM vendor_medsos where idvendor = '".$idvendor."';")->jml;
+            if($cek > 0){
+                $medsos = $this->model->getAllQR("SELECT * FROM vendor_medsos where idvendor = '".$idvendor."';");
+                echo json_encode(array(
+                    "tw" => $medsos->tw,
+                    "fb" => $medsos->fb,
+                    "gp" => $medsos->gp,
+                    "lk" => $medsos->lk,
+                    "ig" => $medsos->ig
+                ));
+            }else{
+                echo json_encode(array(
+                    "tw" => "",
+                    "fb" => "",
+                    "gp" => "",
+                    "lk" => "",
+                    "ig" => ""
+                ));
+            }
+        }else{
+            $this->modul->halaman('login');
+        }
+    }
+    
+    public function ajax_proses_medsos() {
+        if(session()->get("logged_in")){
+            $idvendor = $this->request->getPost('idvendor');
+            $cek = $this->model->getAllQR("SELECT count(*) as jml FROM vendor_medsos where idvendor = '".$idvendor."';")->jml;
+            if($cek > 0){
+                $data = array(
+                    'tw' => $this->request->getPost('tw'),
+                    'fb' => $this->request->getPost('fb'),
+                    'gp' => $this->request->getPost('gp'),
+                    'lk' => $this->request->getPost('lk'),
+                    'ig' => $this->request->getPost('ig')
+                );
+                $kond['idvendor'] = $idvendor;
+                $simpan = $this->model->update("vendor_medsos", $data, $kond);
+                if($simpan == 1){
+                    $status = "Data terupdate";
+                }else{
+                    $status = "Data gagal terupdate";
+                }
+            }else{
+                $data = array(
+                    'idvendor_medsos' => $this->model->autokode("V","idvendor_medsos","vendor_medsos", 2, 7),
+                    'tw' => $this->request->getPost('tw'),
+                    'fb' => $this->request->getPost('fb'),
+                    'gp' => $this->request->getPost('gp'),
+                    'lk' => $this->request->getPost('lk'),
+                    'ig' => $this->request->getPost('ig'),
+                    'idvendor' => $idvendor
+                );
+                $simpan = $this->model->add("vendor_medsos", $data);
+                if($simpan == 1){
+                    $status = "Data tersimpan";
+                }else{
+                    $status = "Data gagal tersimpan";
+                }
             }
             echo json_encode(array("status" => $status));
         }else{

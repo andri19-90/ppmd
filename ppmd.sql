@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 21, 2022 at 04:45 PM
+-- Generation Time: Oct 06, 2022 at 05:14 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -201,6 +201,18 @@ INSERT INTO `pangkat` (`idpangkat`, `nama_pangkat`) VALUES
 ('P00021', 'Mayor'),
 ('P00022', 'Letnan Kolonel'),
 ('P00023', 'Kolonel');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengajuan`
+--
+
+DROP TABLE IF EXISTS `pengajuan`;
+CREATE TABLE IF NOT EXISTS `pengajuan` (
+  `idpengajuan` varchar(6) NOT NULL,
+  PRIMARY KEY (`idpengajuan`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -496,6 +508,8 @@ CREATE TABLE IF NOT EXISTS `vendor` (
   `tlp` varchar(45) NOT NULL,
   `logo` varchar(150) NOT NULL,
   `website` varchar(65) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `deskripsi` text,
   PRIMARY KEY (`idvendor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -503,11 +517,38 @@ CREATE TABLE IF NOT EXISTS `vendor` (
 -- Dumping data for table `vendor`
 --
 
-INSERT INTO `vendor` (`idvendor`, `namavendor`, `alamat`, `tlp`, `logo`, `website`) VALUES
-('V00001', 'PRAMEDIA', 'Rungkut Megah Raya E/16', '085731803889', '1662895657_bf2a116705251844d598.ico', 'https://pramediaenginering.com/'),
-('V00002', 'Koarmada II', 'Dermaga Ujung Surabaya Jawa Timur 60165, Indo', '+62-31-3292706', '1662903187_82af1bd71112dfaf866f.png', 'https://koarmada2.tnial.mil.id/'),
-('V00003', 'PT. Bumi Jatikalang Sejahtera', 'Jl. Kav. DPR IV No. 8 Sidoarjo- Jatim. 61252', '(031) 8948889', '1663765593_91b427bc330fc3303b53.jpg', '@qualitygroup.id'),
-('V00004', 'Cilengsui Graha Raya Group', 'Boulevard Raya Coco Garden Kavling 1-5. Klap ', '', '1663765940_c190e68e86c84886ac42.png', '');
+INSERT INTO `vendor` (`idvendor`, `namavendor`, `alamat`, `tlp`, `logo`, `website`, `email`, `deskripsi`) VALUES
+('V00001', 'PRAMEDIA', 'Rungkut Megah Raya E/16', '085731803889', '1662895657_bf2a116705251844d598.ico', 'https://pramediaenginering.com/', 'rampa@pramedia.com', 'Membangun Kehidupan yang Lebih Baik dengan Software Lebih Sempurna'),
+('V00002', 'Koarmada II', 'Dermaga Ujung Surabaya Jawa Timur 60165, Indo', '+62-31-3292706', '1662903187_82af1bd71112dfaf866f.png', 'https://koarmada2.tnial.mil.id/', '', NULL),
+('V00003', 'PT. Bumi Jatikalang Sejahtera', 'Jl. Kav. DPR IV No. 8 Sidoarjo- Jatim. 61252', '(031) 8948889', '1663765593_91b427bc330fc3303b53.jpg', '@qualitygroup.id', '', NULL),
+('V00004', 'Cilengsui Graha Raya Group', 'Boulevard Raya Coco Garden Kavling 1-5. Klap ', '', '1663765940_c190e68e86c84886ac42.png', '', '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendor_medsos`
+--
+
+DROP TABLE IF EXISTS `vendor_medsos`;
+CREATE TABLE IF NOT EXISTS `vendor_medsos` (
+  `idvendor_medsos` varchar(6) NOT NULL,
+  `tw` varchar(150) NOT NULL,
+  `fb` varchar(150) NOT NULL,
+  `gp` varchar(150) NOT NULL,
+  `lk` varchar(150) NOT NULL,
+  `ig` varchar(150) NOT NULL,
+  `idvendor` varchar(6) NOT NULL,
+  PRIMARY KEY (`idvendor_medsos`),
+  KEY `FK_vendor_medsos_key` (`idvendor`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vendor_medsos`
+--
+
+INSERT INTO `vendor_medsos` (`idvendor_medsos`, `tw`, `fb`, `gp`, `lk`, `ig`, `idvendor`) VALUES
+('V00001', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'https://pramediaenginering.com/', 'V00001'),
+('V00002', 'https://www.google.com/', 'https://www.google.com/', 'https://www.google.com/', 'https://www.google.com/', 'https://www.google.com/', 'V00002');
 
 --
 -- Constraints for dumped tables
@@ -538,6 +579,12 @@ ALTER TABLE `users`
   ADD CONSTRAINT `FK_users_korps` FOREIGN KEY (`idkorps`) REFERENCES `korps` (`idkorps`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_users_pangkat` FOREIGN KEY (`idpangkat`) REFERENCES `pangkat` (`idpangkat`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_users_role` FOREIGN KEY (`idrole`) REFERENCES `role` (`idrole`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `vendor_medsos`
+--
+ALTER TABLE `vendor_medsos`
+  ADD CONSTRAINT `FK_vendor_medsos_key` FOREIGN KEY (`idvendor`) REFERENCES `vendor` (`idvendor`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -87,6 +87,22 @@ class Home extends BaseController{
         // menampilkan produk terbaru dengan limit 12
         $data['produk'] = $this->model->getAllQ("SELECT * FROM produk limit 12;");
         
+        // menampilkan kota perumahan
+        $data['kota'] = $this->model->getAllQ("SELECT distinct kota FROM produk;");
+        // menampilkan batas bawah dan atas
+        $min_max = $this->model->getAllQR("SELECT min(harga) as minharga, max(harga) as maxharga, min(area) as minarea, max(area) as maxarea, min(jml_bed) as min_bed, max(jml_bed) as max_bed, min(jml_bath) as min_bath, max(jml_bath) as max_bath FROM produk;");
+        $data['min_harga'] = $min_max->minharga;
+        $data['max_harga'] = $min_max->maxharga;
+        
+        $data['min_area'] = $min_max->minarea;
+        $data['max_area'] = $min_max->maxarea;
+        
+        $data['min_bed'] = $min_max->min_bed;
+        $data['max_bed'] = $min_max->max_bed;
+        
+        $data['min_bath'] = $min_max->min_bath;
+        $data['max_bath'] = $min_max->max_bath;
+        
         echo view('depan/header', $data);
         echo view('depan/menu');
         echo view('depan/content');

@@ -35,155 +35,97 @@
                 <form action="" class=" form-inline">
                     <div class="col-md-12 clear">
                         <div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="Key word">
+                            <input type="text" class="form-control" placeholder="Perumahan" id="nama_perum" name="nama_perum" autocomplete="off">
                         </div>
                         <div class="col-md-4">                                   
-                            <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
-                                <option>New york, CA</option>
-                                <option>Paris</option>
-                                <option>Casablanca</option>
-                                <option>Tokyo</option>
-                                <option>Marraekch</option>
-                                <option>kyoto , shibua</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">                                     
-                            <select id="basic" class="selectpicker show-tick form-control">
-                                <option> -Status- </option>
-                                <option>Rent </option>
-                                <option>Boy</option>
-                                <option>used</option>  
-
+                            <select id="kota" name="kota" class="form-control" data-live-search="true" data-live-search-style="begins" title="Pilih Kota">
+                                <?php
+                                foreach ($kota->getResult() as $row) {
+                                    ?>
+                                <option><?php echo $row->kota; ?></option>
+                                    <?php
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-12 clear">
                         <div class="search-row">   
-
                             <div class="col-sm-3">
-                                <label for="price-range">Price range ($):</label>
-                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                       data-slider-max="600" data-slider-step="5" 
-                                       data-slider-value="[0,450]" id="price-range" ><br />
-                                <b class="pull-left color">2000$</b> 
-                                <b class="pull-right color">100000$</b>
+                                <label for="price-range">Harga (Rp):</label>
+                                <input type="text" class="span2" value="" data-slider-min="<?php echo $min_harga; ?>" 
+                                       data-slider-max="<?php echo $max_harga; ?>" data-slider-step="1" 
+                                       data-slider-value="[<?php echo $min_harga; ?>,<?php echo $max_harga; ?>]" id="price-range" ><br />
+                                <b class="pull-left color"><?php echo "Rp. ".number_format($min_harga); ?></b> 
+                                <b class="pull-right color"><?php echo "Rp. ".number_format($max_harga); ?></b>
                             </div>
-                            <!-- End of  -->  
-
                             <div class="col-sm-3">
-                                <label for="property-geo">Property geo (m2) :</label>
-                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                       data-slider-max="600" data-slider-step="5" 
-                                       data-slider-value="[50,450]" id="property-geo" ><br />
-                                <b class="pull-left color">40m</b> 
-                                <b class="pull-right color">12000m</b>
+                                <label for="property-geo">Area (m<sup>2</sup>)</label>
+                                <input type="text" class="span2" value="" data-slider-min="<?php echo $min_area; ?>" 
+                                       data-slider-max="<?php echo $max_area; ?>" data-slider-step="1" 
+                                       data-slider-value="[<?php echo $min_area; ?>,<?php echo $max_area; ?>]" id="property-geo"><br />
+                                <b class="pull-left color"><?php echo $min_area; ?> M<sup>2</sup></b> 
+                                <b class="pull-right color"><?php echo $max_area; ?> M<sup>2</sup></b>
                             </div>
-                            <!-- End of  --> 
-
-                            <div class="col-sm-3">
-                                <label for="price-range">Min baths :</label>
-                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                       data-slider-max="600" data-slider-step="5" 
-                                       data-slider-value="[250,450]" id="min-baths" ><br />
-                                <b class="pull-left color">1</b> 
-                                <b class="pull-right color">120</b>
+                            <div class="col-sm-2">
+                                <label for="min-bed">Kamar Tidur</label>
+                                <input type="text" class="span2" value="" data-slider-min="<?php echo $min_bed; ?>" 
+                                       data-slider-max="<?php echo $max_bed; ?>" 
+                                       data-slider-step="1"  data-slider-value="[<?php echo $min_bed; ?>,<?php echo $max_bed; ?>]" id="min-bed"><br />
+                                <b class="pull-left color"><?php echo $min_bed; ?></b> 
+                                <b class="pull-right color"><?php echo $max_bed; ?></b>
                             </div>
-                            <!-- End of  --> 
-
-                            <div class="col-sm-3">
-                                <label for="property-geo">Min bed :</label>
-                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                       data-slider-max="600" data-slider-step="5" 
-                                       data-slider-value="[250,450]" id="min-bed" ><br />
-                                <b class="pull-left color">1</b> 
-                                <b class="pull-right color">120</b>
+                            <div class="col-sm-2">
+                                <label for="min-baths">Kamar Mandi</label>
+                                <input type="text" class="span2" value="" data-slider-min="<?php echo $min_bath; ?>" 
+                                       data-slider-max="<?php echo $max_bath; ?>" data-slider-step="1" 
+                                       data-slider-value="[<?php echo $min_bath; ?>,<?php echo $max_bath; ?>]" id="min-baths" ><br />
+                                <b class="pull-left color"><?php echo $min_bath; ?></b> 
+                                <b class="pull-right color"><?php echo $max_bath; ?></b>
                             </div>
                             <!-- End of  --> 
 
                         </div>
 
                         <div class="search-row">  
-
+                            <div class="col-sm-3">
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Fire Place</label>
+                                </div>
+                            </div>
                             <div class="col-sm-3">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Fire Place(3100)
+                                        <input type="checkbox"> Wastafel
                                     </label>
                                 </div>
                             </div>
-                            <!-- End of  -->  
-
                             <div class="col-sm-3">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Dual Sinks(500)
+                                        <input type="checkbox"> Swimming Pool
                                     </label>
                                 </div>
                             </div>
-                            <!-- End of  --> 
-
+                            <div class="col-sm-3">
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Emergency Exit</label>
+                                </div>
+                            </div>
                             <div class="col-sm-3">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Hurricane Shutters(99)
+                                        <input type="checkbox"> Laundry Room
                                     </label>
                                 </div>
                             </div>
-                            <!-- End of  -->  
-
                             <div class="col-sm-3">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Swimming Pool(1190)
+                                        <input type="checkbox"> Jog Path
                                     </label>
                                 </div>
                             </div>
-                            <!-- End of  -->  
-
-                            <div class="col-sm-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> 2 Stories(4600)
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- End of  --> 
-
-                            <div class="col-sm-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Emergency Exit(200)
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- End of  --> 
-
-                            <div class="col-sm-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Laundry Room(10073)
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- End of  -->  
-
-                            <div class="col-sm-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Jog Path(1503)
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- End of  --> 
-
-                            <div class="col-sm-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> 26' Ceilings(1200)
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- End of  --> 
                         </div>   
                     </div>  
                     <div class="center">

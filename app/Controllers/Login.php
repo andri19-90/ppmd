@@ -11,7 +11,7 @@ class Login extends BaseController{
     
     public function __construct() {
         $this->model = new Mcustom();
-        $this->modul= new Modul();
+        $this->modul = new Modul();
     }
     
     public function index(){

@@ -120,6 +120,7 @@ $routes->post('/vendor/ajax_add_detil', 'Vendor::ajax_add_detil');
 $routes->post('/vendor/ganti_detil/(:any)', 'Vendor::ganti_detil/$1');
 $routes->post('/vendor/ajax_edit_detil', 'Vendor::ajax_edit_detil');
 $routes->post('/vendor/hapusdetil/(:any)', 'Vendor::hapusdetil/$1');
+$routes->get('/vendor/loadmedsoss/(:any)', 'Vendor::loadmedsoss/$1');
 
 $routes->get('/vendor/subdetil/(:any)', 'Vendor::subdetil/$1');
 $routes->get('/vendor/ajaxgambarlain/(:any)', 'Vendor::ajaxgambarlain/$1');
@@ -128,6 +129,7 @@ $routes->post('/vendor/ajax_add_gambar', 'Vendor::ajax_add_gambar');
 $routes->post('/vendor/ajax_edit_gambar', 'Vendor::ajax_edit_gambar');
 $routes->post('/vendor/showgambar/(:any)', 'Vendor::showgambar/$1');
 $routes->post('/vendor/hapusgambar/(:any)', 'Vendor::hapusgambar/$1');
+$routes->post('/vendor/ajax_proses_medsos', 'Vendor::ajax_proses_medsos');
 
 $routes->get('/pengguna', 'Pengguna::index');
 $routes->get('/pengguna/ajaxlist', 'Pengguna::ajaxlist');

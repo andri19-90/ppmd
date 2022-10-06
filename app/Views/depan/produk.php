@@ -102,7 +102,7 @@
                 <div class="blog-asside-right pl0">
                     <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                         <div class="panel-heading">
-                            <h3 class="panel-title">Smart search</h3>
+                            <h3 class="panel-title">Pencarian</h3>
                         </div>
                         <div class="panel-body search-widget">
                             <form action="" class=" form-inline"> 
@@ -116,10 +116,8 @@
 
                                 <fieldset>
                                     <div class="row">
-                                        <div class="col-xs-6">
-
+                                        <div class="col-xs-12">
                                             <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City">
-
                                                 <option>New york, CA</option>
                                                 <option>Paris</option>
                                                 <option>Casablanca</option>
@@ -128,34 +126,25 @@
                                                 <option>kyoto , shibua</option>
                                             </select>
                                         </div>
-                                        <div class="col-xs-6">
-
-                                            <select id="basic" class="selectpicker show-tick form-control">
-                                                <option> -Status- </option>
-                                                <option>Rent </option>
-                                                <option>Boy</option>
-                                                <option>used</option>  
-
-                                            </select>
-                                        </div>
                                     </div>
                                 </fieldset>
 
                                 <fieldset class="padding-5">
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <label for="price-range">Price range ($):</label>
-                                            <input type="text" class="span2" value="" data-slider-min="0" 
-                                                   data-slider-max="600" data-slider-step="5" 
-                                                   data-slider-value="[0,450]" id="price-range" ><br />
+                                            <label for="price-range">Batas Harga (Rp):</label>
+                                            <input type="text" class="span2" value="" data-slider-min="0"  
+                                                   data-slider-max="600" 
+                                                   data-slider-step="5" data-slider-value="[0,450]" id="price-range" >
+                                            <br />
                                             <b class="pull-left color">2000$</b> 
                                             <b class="pull-right color">100000$</b>                                                
                                         </div>
                                         <div class="col-xs-6">
-                                            <label for="property-geo">Property geo (m2) :</label>
+                                            <label for="property-geo">Area (m2) :</label>
                                             <input type="text" class="span2" value="" data-slider-min="0" 
                                                    data-slider-max="600" data-slider-step="5" 
-                                                   data-slider-value="[50,450]" id="property-geo" ><br />
+                                                   data-slider-value="[0,450]" id="property-geo" ><br />
                                             <b class="pull-left color">40m</b> 
                                             <b class="pull-right color">12000m</b>                                                
                                         </div>                                            
@@ -165,12 +154,12 @@
                                 <fieldset class="padding-5">
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <label for="price-range">Min baths :</label>
+                                            <label for="price-range">Kamar Mandi :</label>
                                             <input type="text" class="span2" value="" data-slider-min="0" 
-                                                   data-slider-max="600" data-slider-step="5" 
-                                                   data-slider-value="[250,450]" id="min-baths" ><br />
+                                                   data-slider-max="10" data-slider-step="1" 
+                                                   data-slider-value="[0,5]" id="min-baths" ><br />
                                             <b class="pull-left color">1</b> 
-                                            <b class="pull-right color">120</b>                                                
+                                            <b class="pull-right color">10</b>                                                
                                         </div>
 
                                         <div class="col-xs-6">
@@ -244,70 +233,6 @@
                                     </div>
                                 </fieldset>                                     
                             </form>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Recommended</h3>
-                        </div>
-                        <div class="panel-body recent-property-widget">
-                            <ul>
-                                <li>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                        <a href="single.html"><img src="<?php echo base_url(); ?>/depan/assets/img/demo/small-property-2.jpg"></a>
-                                        <span class="property-seeker">
-                                            <b class="b-1">A</b>
-                                            <b class="b-2">S</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                        <h6> <a href="single.html">Super nice villa </a></h6>
-                                        <span class="property-price">3000000$</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="col-md-3 col-sm-3  col-xs-3 blg-thumb p0">
-                                        <a href="single.html"><img src="<?php echo base_url(); ?>/depan/assets/img/demo/small-property-1.jpg"></a>
-                                        <span class="property-seeker">
-                                            <b class="b-1">A</b>
-                                            <b class="b-2">S</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                        <h6> <a href="single.html">Super nice villa </a></h6>
-                                        <span class="property-price">3000000$</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                        <a href="single.html"><img src="<?php echo base_url(); ?>/depan/assets/img/demo/small-property-3.jpg"></a>
-                                        <span class="property-seeker">
-                                            <b class="b-1">A</b>
-                                            <b class="b-2">S</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                        <h6> <a href="single.html">Super nice villa </a></h6>
-                                        <span class="property-price">3000000$</span>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                        <a href="single.html"><img src="<?php echo base_url(); ?>/depan/assets/img/demo/small-property-2.jpg"></a>
-                                        <span class="property-seeker">
-                                            <b class="b-1">A</b>
-                                            <b class="b-2">S</b>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                        <h6> <a href="single.html">Super nice villa </a></h6>
-                                        <span class="property-price">3000000$</span>
-                                    </div>
-                                </li>
-
-                            </ul>
                         </div>
                     </div>
                 </div>

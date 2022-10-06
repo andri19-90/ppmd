@@ -27,6 +27,8 @@
         var alamat = document.getElementById('alamat').value;
         var tlp = document.getElementById('tlp').value;
         var web = document.getElementById('web').value;
+        var email = document.getElementById('email').value;
+        var deskripsi = document.getElementById('deskripsi').value;
         var foto = $('#logo').prop('files')[0];
         
         if (nama === '') {
@@ -48,6 +50,8 @@
             form_data.append('alamat', alamat);
             form_data.append('tlp', tlp);
             form_data.append('web', web);
+            form_data.append('email', email);
+            form_data.append('deskripsi', deskripsi);
             form_data.append('file', foto);
         
             $.ajax({
@@ -106,6 +110,8 @@
                 $('[name="alamat"]').val(data.alamat);
                 $('[name="tlp"]').val(data.tlp);
                 $('[name="web"]').val(data.website);
+                $('[name="email"]').val(data.email);
+                $('[name="deskripsi"]').val(data.deskripsi);
             }, error: function (jqXHR, textStatus, errorThrown) {
                 alert('Error get data');
             }
@@ -118,6 +124,68 @@
     
     function detil(kode){
         window.location.href = "<?php echo base_url(); ?>/vendor/detil/" + kode;
+    }
+    
+    function medsos(kode){
+        $('#form_medsos')[0].reset();
+        $('#modal_medsos').modal('show');
+        $.ajax({
+            url: "<?php echo base_url(); ?>/vendor/loadmedsoss/" + kode,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('[name="idvendor"]').val(kode);
+                $('[name="tw"]').val(data.tw);
+                $('[name="fb"]').val(data.fb);
+                $('[name="gp"]').val(data.gp);
+                $('[name="lk"]').val(data.lk);
+                $('[name="ig"]').val(data.ig);
+            }, error: function (jqXHR, textStatus, errorThrown) {
+                alert('Error get data');
+            }
+        });
+    }
+    
+    function save_medsos(){
+        var tw = document.getElementById('tw').value;
+        var fb = document.getElementById('fb').value;
+        var gp = document.getElementById('gp').value;
+        var lk = document.getElementById('lk').value;
+        var ig = document.getElementById('ig').value;
+        var idvendor = document.getElementById('idvendor').value;
+        
+        $('#btnSaveMedsos').text('Saving...');
+        $('#btnSaveMedsos').attr('disabled', true);
+
+        var form_data = new FormData();
+        form_data.append('tw', tw);
+        form_data.append('fb', fb);
+        form_data.append('gp', gp);
+        form_data.append('lk', lk);
+        form_data.append('ig', ig);
+        form_data.append('idvendor', idvendor);
+
+        $.ajax({
+            url : "<?php echo base_url(); ?>/vendor/ajax_proses_medsos",
+            dataType: 'JSON',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'POST',
+            success: function (data) {
+                alert(data.status);
+                $('#modal_medsos').modal('hide');
+
+                $('#btnSaveMedsos').text('Save');
+                $('#btnSaveMedsos').attr('disabled', false);
+            }, error: function (jqXHR, textStatus, errorThrown) {
+                alert("Error json " + errorThrown);
+
+                $('#btnSaveMedsos').text('Save');
+                $('#btnSaveMedsos').attr('disabled', false);
+            }
+        });
     }
 
 </script>
@@ -145,7 +213,6 @@
                                     <th>Vendor</th>
                                     <th>Alamat</th>
                                     <th>Telepon</th>
-                                    <th>Website</th>
                                     <th style="text-align: center;">Aksi</th>
                                 </tr>
                             </thead>
@@ -195,8 +262,20 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" autocomplete="off" id="email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
                             <label class="form-label">Website</label>
                             <input type="text" class="form-control" autocomplete="off" id="web" name="web">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="form-label">Deskripsi</label>
+                            <input type="text" class="form-control" autocomplete="off" id="deskripsi" name="deskripsi">
                         </div>
                     </div>
                 </form>
@@ -204,6 +283,56 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="btnSave" type="button" class="btn btn-primary" onclick="save();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_medsos">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Media Sosial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="form_medsos">
+                    <input type="hidden" id="idvendor" name="idvendor" readonly autocomplete>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="form-label">Twiter</label>
+                            <input type="text" class="form-control" autocomplete="off" id="tw" name="tw">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="form-label">Facebook</label>
+                            <input type="text" class="form-control" autocomplete="off" id="fb" name="fb">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="form-label">Google Plus</label>
+                            <input type="text" class="form-control" autocomplete="off" id="gp" name="gp">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="form-label">Linkedin</label>
+                            <input type="text" class="form-control" autocomplete="off" id="lk" name="lk">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="form-label">Instagram</label>
+                            <input type="text" class="form-control" autocomplete="off" id="ig" name="ig">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="btnSaveMedsos" type="button" class="btn btn-primary" onclick="save_medsos();">Save</button>
             </div>
         </div>
     </div>
